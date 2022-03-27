@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1033728881133-4l4v1me660js6csbgu33j23hshdmjb3i.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1033728881133-4l4v1me660js6csbgu33j23hshdmjb3i</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDmsOwHjB5iib5YshZY5644Y0jXbTtVCQM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1033728881133</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>edu.wustl.cse439.TennisBuddy</string>
+	<key>PROJECT_ID</key>
+	<string>tennis-14f5f</string>
+	<key>STORAGE_BUCKET</key>
+	<string>tennis-14f5f.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1033728881133:ios:0229c6b106ed8d14c877e4</string>
+</dict>
+</plist>
