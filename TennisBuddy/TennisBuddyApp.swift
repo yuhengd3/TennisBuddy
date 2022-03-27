@@ -10,6 +10,8 @@ import Firebase
 
 @main
 struct TennisBuddyApp: App {
+    var uid: Int?
+    
     init() {
         FirebaseApp.configure()
     }
