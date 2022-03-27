@@ -6,10 +6,23 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct LoginView: View {
-    @State var email: String = ""
-    @State var password: String = ""
+    @ObservedObject var viewModel: globalUserViewModel
+    
+    @State private var email: String = ""
+    @State private var password: String = ""
+    
+    @State private var showingSignupAlert = false
+    @State private var alertState = SignUpAlertState.success
+    @State private var errorContent: String = ""
+    
+    @State private var showingLoginAlert = false
+    
+    enum SignUpAlertState {
+        case success, failure
+    }
     
     var body: some View {
         VStack {
@@ -27,36 +40,63 @@ struct LoginView: View {
                 .padding(.bottom, 20)
             
             HStack {
-                Button {
+                Button(action: {
                     login()
-                } label: {
+                }, label: {
                     Text("Submit")
                         .padding()
                         .border(.gray)
-                }
+                })
+                    .alert(isPresented: $showingLoginAlert) {
+                        Alert(title: Text("Log In Failed"), message: Text(errorContent), dismissButton: .default(Text("Try again")))
+                    }
                 
                 Spacer()
                     .fixedSize(horizontal: true, vertical: true)
                     .frame(width: 20)
                 
-                Button {
+                Button(action: {
                     signUp()
-                } label: {
+                }, label: {
                     Text("Sign Up")
                         .padding()
                         .border(.gray)
+                })
+                    .alert(isPresented: $showingSignupAlert) {
+                        switch alertState {
+                        case .success:
+                            return Alert(title: Text("Success"), message: Text("You can log in with username and password"), dismissButton: .default(Text("Great!")))
+                        case .failure:
+                            return Alert(title: Text("Congrats"), message: Text(errorContent), dismissButton: .default(Text("Let me try again!")))
+                        }
                 }
             }
         }
         .padding()
     }
     
-    private func login() -> Bool {
-        return false
+    private func login() {
+        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+            if let err = error {
+                errorContent = err.localizedDescription
+                showingLoginAlert = true
+            } else {
+                let uid = Auth.auth().currentUser!.uid
+                viewModel.updateUID(uid)
+            }
+        }
     }
     
-    private func signUp() -> Bool {
-        return false
+    private func signUp() {
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+            if let err = error {
+                errorContent = err.localizedDescription
+                alertState = .failure
+            } else {
+                alertState = .success
+            }
+            showingSignupAlert = true
+        }
     }
 }
 

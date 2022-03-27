@@ -24,6 +24,8 @@
 		5813402D27F015EA0006E93A /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 5813402C27F015EA0006E93A /* FirebaseStorageCombine-Community */; };
 		5813402F27F015EA0006E93A /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 5813402E27F015EA0006E93A /* FirebaseStorageSwift-Beta */; };
 		5813403127F022B30006E93A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5813403027F022B30006E93A /* LoginView.swift */; };
+		5813403327F027A00006E93A /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5813403227F027A00006E93A /* UserModel.swift */; };
+		5813403527F032EC0006E93A /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5813403427F032EC0006E93A /* UserViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		5813401027F0135A0006E93A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5813401727F013E20006E93A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5813403027F022B30006E93A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		5813403227F027A00006E93A /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		5813403427F032EC0006E93A /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 				5813401727F013E20006E93A /* GoogleService-Info.plist */,
 				5813400F27F0135A0006E93A /* Preview Content */,
 				5813403027F022B30006E93A /* LoginView.swift */,
+				5813403227F027A00006E93A /* UserModel.swift */,
+				5813403427F032EC0006E93A /* UserViewModel.swift */,
 			);
 			path = TennisBuddy;
 			sourceTree = "<group>";
@@ -183,7 +189,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5813403127F022B30006E93A /* LoginView.swift in Sources */,
+				5813403327F027A00006E93A /* UserModel.swift in Sources */,
 				5813400C27F013580006E93A /* ContentView.swift in Sources */,
+				5813403527F032EC0006E93A /* UserViewModel.swift in Sources */,
 				5813400A27F013580006E93A /* TennisBuddyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

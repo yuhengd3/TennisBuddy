@@ -8,9 +8,10 @@
 import SwiftUI
 import Firebase
 
+var globalUserViewModel = UserViewModel()
+
 @main
 struct TennisBuddyApp: App {
-    var uid: Int?
     
     init() {
         FirebaseApp.configure()
