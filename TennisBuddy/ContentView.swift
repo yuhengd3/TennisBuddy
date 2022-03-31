@@ -41,8 +41,7 @@ struct ContentView: View {
                 }
                 .tag(2)
             
-            Text("Profile")
-                .font(.system(size: 30))
+            ProfileView()
                 .tabItem {
                     Image(systemName: "person.circle.fill")
                 }

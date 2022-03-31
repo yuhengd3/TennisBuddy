@@ -26,6 +26,9 @@
 		5813403127F022B30006E93A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5813403027F022B30006E93A /* LoginView.swift */; };
 		5813403327F027A00006E93A /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5813403227F027A00006E93A /* UserModel.swift */; };
 		5813403527F032EC0006E93A /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5813403427F032EC0006E93A /* UserViewModel.swift */; };
+		5813403727F0349A0006E93A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5813403627F0349A0006E93A /* ProfileView.swift */; };
+		58AF619927F61E3000CDAC49 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AF619827F61E3000CDAC49 /* AuthView.swift */; };
+		58AF619B27F65AD500CDAC49 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AF619A27F65AD500CDAC49 /* SignupView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,9 @@
 		5813403027F022B30006E93A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		5813403227F027A00006E93A /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		5813403427F032EC0006E93A /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		5813403627F0349A0006E93A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		58AF619827F61E3000CDAC49 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		58AF619A27F65AD500CDAC49 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +95,9 @@
 				5813403027F022B30006E93A /* LoginView.swift */,
 				5813403227F027A00006E93A /* UserModel.swift */,
 				5813403427F032EC0006E93A /* UserViewModel.swift */,
+				5813403627F0349A0006E93A /* ProfileView.swift */,
+				58AF619827F61E3000CDAC49 /* AuthView.swift */,
+				58AF619A27F65AD500CDAC49 /* SignupView.swift */,
 			);
 			path = TennisBuddy;
 			sourceTree = "<group>";
@@ -188,10 +197,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58AF619927F61E3000CDAC49 /* AuthView.swift in Sources */,
 				5813403127F022B30006E93A /* LoginView.swift in Sources */,
 				5813403327F027A00006E93A /* UserModel.swift in Sources */,
 				5813400C27F013580006E93A /* ContentView.swift in Sources */,
+				58AF619B27F65AD500CDAC49 /* SignupView.swift in Sources */,
 				5813403527F032EC0006E93A /* UserViewModel.swift in Sources */,
+				5813403727F0349A0006E93A /* ProfileView.swift in Sources */,
 				5813400A27F013580006E93A /* TennisBuddyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
