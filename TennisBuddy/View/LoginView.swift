@@ -28,7 +28,7 @@ struct LoginView: View {
 
                 TextField("email", text: $email)
                     .padding()
-                    // .background(.white) // ios 15
+                    .background(.white)
                     .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 5)
                     .shadow(color: .black.opacity(0.08), radius: 5, x: 0, y: -5)
 
@@ -39,7 +39,7 @@ struct LoginView: View {
 
                 SecureField("password", text: $password)
                     .padding()
-                    // .background(.white) // ios 15
+                    .background(.white)
                     .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 5)
                     .shadow(color: .black.opacity(0.08), radius: 5, x: 0, y: -5)
 
