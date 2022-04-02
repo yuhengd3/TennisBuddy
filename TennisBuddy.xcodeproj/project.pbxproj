@@ -27,6 +27,7 @@
 		5813403327F027A00006E93A /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5813403227F027A00006E93A /* UserModel.swift */; };
 		5813403527F032EC0006E93A /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5813403427F032EC0006E93A /* UserViewModel.swift */; };
 		5813403727F0349A0006E93A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5813403627F0349A0006E93A /* ProfileView.swift */; };
+		585CCE1227F81EB300706782 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585CCE1127F81EB300706782 /* LoginModel.swift */; };
 		58AF619927F61E3000CDAC49 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AF619827F61E3000CDAC49 /* AuthView.swift */; };
 		58AF619B27F65AD500CDAC49 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AF619A27F65AD500CDAC49 /* SignupView.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,7 @@
 		5813403227F027A00006E93A /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		5813403427F032EC0006E93A /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		5813403627F0349A0006E93A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		585CCE1127F81EB300706782 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		58AF619827F61E3000CDAC49 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		58AF619A27F65AD500CDAC49 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,17 +89,13 @@
 		5813400827F013580006E93A /* TennisBuddy */ = {
 			isa = PBXGroup;
 			children = (
+				5813400F27F0135A0006E93A /* Preview Content */,
 				5813400927F013580006E93A /* TennisBuddyApp.swift */,
-				5813400B27F013580006E93A /* ContentView.swift */,
 				5813400D27F0135A0006E93A /* Assets.xcassets */,
 				5813401727F013E20006E93A /* GoogleService-Info.plist */,
-				5813400F27F0135A0006E93A /* Preview Content */,
-				5813403027F022B30006E93A /* LoginView.swift */,
-				5813403227F027A00006E93A /* UserModel.swift */,
-				5813403427F032EC0006E93A /* UserViewModel.swift */,
-				5813403627F0349A0006E93A /* ProfileView.swift */,
-				58AF619827F61E3000CDAC49 /* AuthView.swift */,
-				58AF619A27F65AD500CDAC49 /* SignupView.swift */,
+				585CCE0E27F81E1100706782 /* View */,
+				585CCE0F27F81E2D00706782 /* Model */,
+				585CCE1027F81E3E00706782 /* ViewModel */,
 			);
 			path = TennisBuddy;
 			sourceTree = "<group>";
@@ -108,6 +106,35 @@
 				5813401027F0135A0006E93A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		585CCE0E27F81E1100706782 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5813400B27F013580006E93A /* ContentView.swift */,
+				5813403027F022B30006E93A /* LoginView.swift */,
+				5813403627F0349A0006E93A /* ProfileView.swift */,
+				58AF619827F61E3000CDAC49 /* AuthView.swift */,
+				58AF619A27F65AD500CDAC49 /* SignupView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		585CCE0F27F81E2D00706782 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5813403227F027A00006E93A /* UserModel.swift */,
+				585CCE1127F81EB300706782 /* LoginModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		585CCE1027F81E3E00706782 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5813403427F032EC0006E93A /* UserViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,6 +228,7 @@
 				5813403127F022B30006E93A /* LoginView.swift in Sources */,
 				5813403327F027A00006E93A /* UserModel.swift in Sources */,
 				5813400C27F013580006E93A /* ContentView.swift in Sources */,
+				585CCE1227F81EB300706782 /* LoginModel.swift in Sources */,
 				58AF619B27F65AD500CDAC49 /* SignupView.swift in Sources */,
 				5813403527F032EC0006E93A /* UserViewModel.swift in Sources */,
 				5813403727F0349A0006E93A /* ProfileView.swift in Sources */,
@@ -262,7 +290,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -317,7 +345,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

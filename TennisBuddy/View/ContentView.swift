@@ -24,6 +24,7 @@ struct ContentView: View {
                 .font(.system(size: 30))
                 .tabItem {
                     Image(systemName: "calendar.circle.fill")
+                    Text("Game")
                 }
                 .tag(0)
             
@@ -31,6 +32,7 @@ struct ContentView: View {
                 .font(.system(size: 30))
                 .tabItem {
                     Image(systemName: "line.3.horizontal.circle.fill") // placeholder until a better icon is found
+                    Text("Ranking")
                 }
                 .tag(1)
             
@@ -38,12 +40,14 @@ struct ContentView: View {
                 .font(.system(size: 30))
                 .tabItem {
                     Image(systemName: "message.circle.fill")
+                    Text("Message")
                 }
                 .tag(2)
             
             ProfileView()
                 .tabItem {
                     Image(systemName: "person.circle.fill")
+                    Text("Profile")
                 }
                 .tag(3)
         }

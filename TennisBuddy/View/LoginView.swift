@@ -9,16 +9,10 @@ import SwiftUI
 import FirebaseAuth
 
 struct LoginView: View {
-    @ObservedObject var viewModel = globalUserViewModel
+    @ObservedObject var loginModel = LoginModel()
     
     @State private var email: String = ""
     @State private var password: String = ""
-    
-    @State private var showingSignupAlert = false
-    @State private var alertState = SignUpAlertState.success
-    @State private var errorContent: String = ""
-    
-    @State private var showingLoginAlert = false
     
     enum SignUpAlertState {
         case success, failure
@@ -34,7 +28,7 @@ struct LoginView: View {
 
                 TextField("email", text: $email)
                     .padding()
-                    .background(.white)
+                    // .background(.white) // ios 15
                     .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 5)
                     .shadow(color: .black.opacity(0.08), radius: 5, x: 0, y: -5)
 
@@ -45,7 +39,7 @@ struct LoginView: View {
 
                 SecureField("password", text: $password)
                     .padding()
-                    .background(.white)
+                    // .background(.white) // ios 15
                     .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 5)
                     .shadow(color: .black.opacity(0.08), radius: 5, x: 0, y: -5)
 
@@ -56,12 +50,15 @@ struct LoginView: View {
                         .font(.system(size: 14))
                         .fontWeight(.bold)
                 })
+                    .alert(isPresented: $loginModel.showingAlert) {
+                        Alert(title: Text("Login Failed"), message: Text(loginModel.alertContent), dismissButton: .default(Text("Okay")))
+                    }
             }
             .padding(.horizontal, 15)
             .padding(.top, 25)
 
             Button(action: {
-
+                loginModel.login(email: email, password: password)
             }, label: {
                 Text("Login")
                     .font(.system(size: 20))
@@ -71,40 +68,25 @@ struct LoginView: View {
                     .frame(width: UIScreen.main.bounds.width - 50)
                     .background(
                         Color("PrincetonOrange")
-                        // LinearGradient(gradient: .init(colors: [Color("PrincetonOrange"), .gray]), startPoint: .topLeading, endPoint: .bottomTrailing)
                     )
                     .cornerRadius(8)
             })
-                //.padding(.horizontal, 25)
-                //.padding(.top, 20)
         }
         
         
     }
     
-    private func login() {
-        Auth.auth().signIn(withEmail: email, password: password) { result, error in
-            if let err = error {
-                errorContent = err.localizedDescription
-                showingLoginAlert = true
-            } else {
-                let uid = Auth.auth().currentUser!.uid
-                viewModel.updateUID(uid)
-            }
-        }
-    }
-    
-    private func signUp() {
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-            if let err = error {
-                errorContent = err.localizedDescription
-                alertState = .failure
-            } else {
-                alertState = .success
-            }
-            showingSignupAlert = true
-        }
-    }
+//    private func signUp() {
+//        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+//            if let err = error {
+//                errorContent = err.localizedDescription
+//                alertState = .failure
+//            } else {
+//                alertState = .success
+//            }
+//            showingSignupAlert = true
+//        }
+//    }
 }
 
 struct LoginView_Previews: PreviewProvider {

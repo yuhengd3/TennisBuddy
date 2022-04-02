@@ -26,7 +26,7 @@ struct AuthView: View {
                             .fontWeight(.bold)
                             .foregroundColor(index == 0 ? .black : .gray)
                         Capsule()
-                            .fill(Color("CarolinaBlue"))
+                            .fill(index == 0 ? Color("CarolinaBlue") : .gray)
                             .frame(height: 4)
                     }
                 })
@@ -43,7 +43,7 @@ struct AuthView: View {
                             .fontWeight(.bold)
                             .foregroundColor(index == 1 ? .black : .gray)
                         Capsule()
-                            .fill(Color("CarolinaBlue"))
+                            .fill(index == 1 ? Color("CarolinaBlue") : .gray)
                             .frame(height: 4)
                     }
                 })
