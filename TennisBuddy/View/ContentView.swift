@@ -20,8 +20,7 @@ struct ContentView: View {
     // TODO: resize icons
     var body: some View {
         TabView(selection: $selection) {
-            Text("Games")
-                .font(.system(size: 30))
+            GameView()
                 .tabItem {
                     Image(systemName: "calendar.circle.fill")
                     Text("Game")
