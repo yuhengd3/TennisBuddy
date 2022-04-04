@@ -9,14 +9,10 @@ import SwiftUI
 import FirebaseAuth
 
 struct LoginView: View {
-    @ObservedObject var loginModel = LoginModel()
+    @ObservedObject var loginViewModel = LoginViewModel()
     
     @State private var email: String = ""
     @State private var password: String = ""
-    
-    enum SignUpAlertState {
-        case success, failure
-    }
     
     var body: some View {
         VStack {
@@ -27,6 +23,8 @@ struct LoginView: View {
                     .foregroundColor(.gray)
 
                 TextField("email", text: $email)
+                    .disableAutocorrection(true)
+                    .textInputAutocapitalization(.never)
                     .padding()
                     .background(.white)
                     .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 5)
@@ -38,6 +36,8 @@ struct LoginView: View {
                     .foregroundColor(.gray)
 
                 SecureField("password", text: $password)
+                    .disableAutocorrection(true)
+                    .textInputAutocapitalization(.never)
                     .padding()
                     .background(.white)
                     .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 5)
@@ -50,15 +50,12 @@ struct LoginView: View {
                         .font(.system(size: 14))
                         .fontWeight(.bold)
                 })
-                    .alert(isPresented: $loginModel.showingAlert) {
-                        Alert(title: Text("Login Failed"), message: Text(loginModel.alertContent), dismissButton: .default(Text("Okay")))
-                    }
             }
             .padding(.horizontal, 15)
             .padding(.top, 25)
 
             Button(action: {
-                loginModel.login(email: email, password: password)
+                loginViewModel.login(email: email, password: password)
             }, label: {
                 Text("Login")
                     .font(.system(size: 20))
@@ -71,22 +68,12 @@ struct LoginView: View {
                     )
                     .cornerRadius(8)
             })
+                .alert(isPresented: $loginViewModel.showingAlert) {
+                    Alert(title: Text("Login Failed"), message: Text(loginViewModel.alertContent), dismissButton: .default(Text("Okay")))
+                }
         }
-        
-        
     }
     
-//    private func signUp() {
-//        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-//            if let err = error {
-//                errorContent = err.localizedDescription
-//                alertState = .failure
-//            } else {
-//                alertState = .success
-//            }
-//            showingSignupAlert = true
-//        }
-//    }
 }
 
 struct LoginView_Previews: PreviewProvider {

@@ -8,9 +8,9 @@
 import Foundation
 import FirebaseAuth
 
-class LoginModel: ObservableObject {
-    var showingAlert = false
-    var alertContent: String = ""
+class LoginViewModel: ObservableObject {
+    @Published var showingAlert = false
+    @Published var alertContent: String = ""
     var userViewModel: UserViewModel = globalUserViewModel
     
     func login(email: String, password: String) {
@@ -18,6 +18,7 @@ class LoginModel: ObservableObject {
             if let err = error {
                 self.alertContent = err.localizedDescription
                 self.showingAlert = true
+                print("login failed")
             } else {
                 let uid = Auth.auth().currentUser!.uid
                 self.userViewModel.updateUID(uid)

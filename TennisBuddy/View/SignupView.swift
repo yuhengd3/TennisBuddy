@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SignupView: View {
+    @ObservedObject var signupViewModel = SignupViewModel()
+    
     @State var email = ""
     @State var password = ""
     @State var username = ""
@@ -31,6 +33,8 @@ struct SignupView: View {
                     .foregroundColor(.gray)
                 
                 TextField("email", text: $email)
+                    .disableAutocorrection(true)
+                    .textInputAutocapitalization(.never)
                     .padding()
                     .background(.white)
                     .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 5)
@@ -42,6 +46,8 @@ struct SignupView: View {
                     .foregroundColor(.gray)
                 
                 SecureField("password", text: $password)
+                    .disableAutocorrection(true)
+                    .textInputAutocapitalization(.never)
                     .padding()
                     .background(.white)
                     .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 5)
@@ -53,6 +59,8 @@ struct SignupView: View {
                     .foregroundColor(.gray)
                 
                 TextField("username", text: $username)
+                    .disableAutocorrection(true)
+                    .textInputAutocapitalization(.never)
                     .padding()
                     .background(.white)
                     .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 5)
@@ -64,7 +72,7 @@ struct SignupView: View {
             .padding(.bottom, 25)
             
             Button(action: {
-                
+                signupViewModel.signup(email: email, password: password, username: username)
             }, label: {
                 Text("Sign Up")
                     .font(.system(size: 20))
@@ -78,6 +86,9 @@ struct SignupView: View {
                     )
                     .cornerRadius(8)
             })
+                .alert(isPresented: $signupViewModel.showingAlert) {
+                    Alert(title: Text("Signup Failed"), message: Text(signupViewModel.alertContent), dismissButton: .default(Text("Okay")))
+                }
                 //.padding(.horizontal, 25)
                 //.padding(.top, 20)
         }

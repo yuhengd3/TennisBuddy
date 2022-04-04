@@ -9,6 +9,7 @@ import SwiftUI
 import Firebase
 
 var globalUserViewModel = UserViewModel()
+let USERS = "users"
 
 @main
 struct TennisBuddyApp: App {
