@@ -41,6 +41,7 @@ struct GameListRowView: View {
             }
             Spacer()
         }
+        .frame(height: 70)
     }
 }
 

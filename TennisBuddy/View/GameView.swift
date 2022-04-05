@@ -60,23 +60,22 @@ struct GameView: View {
 //                    Spacer()
 //                }
                 
-                NavigationView {
-                    List {
-                        ForEach(games) { game in
-                            NavigationLink {
-                                
-                            } label: {
-                                GameListRowView(game: game)
-                                    .mask(Color.black.opacity(game.players.count == game.maxNumPlayers ? 0.4 : 1))
-                            }
+                
+                List {
+                    ForEach(games) { game in
+                        NavigationLink {
+                            
+                        } label: {
+                            GameListRowView(game: game)
+                                .mask(Color.black.opacity(game.players.count == game.maxNumPlayers ? 0.4 : 1))
                         }
-                        //.navigationBarHidden(true)
-                        .navigationTitle("Scheduled Games")
-                        .navigationBarTitleDisplayMode(.inline)
-        
                     }
+                    .navigationBarHidden(true)
+                    .navigationTitle("Scheduled Games")
+                    .navigationBarTitleDisplayMode(.inline)
+    
                 }
-                //.padding(.top, -50)
+
                 
                 
 

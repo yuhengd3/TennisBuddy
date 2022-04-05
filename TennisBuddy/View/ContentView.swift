@@ -30,36 +30,38 @@ struct ContentView: View {
     
     // TODO: resize icons
     var body: some View {
-        TabView(selection: $selection) {
-            GameView(games: fakeGames)
-                .tabItem {
-                    Image(systemName: "calendar.circle.fill")
-                    Text("Game")
-                }
-                .tag(0)
-            
-            Text("Ranking")
-                .font(.system(size: 30))
-                .tabItem {
-                    Image(systemName: "line.3.horizontal.circle.fill") // placeholder until a better icon is found
-                    Text("Ranking")
-                }
-                .tag(1)
-            
-            Text("Message")
-                .font(.system(size: 30))
-                .tabItem {
-                    Image(systemName: "message.circle.fill")
-                    Text("Message")
-                }
-                .tag(2)
-            
-            ProfileView()
-                .tabItem {
-                    Image(systemName: "person.circle.fill")
-                    Text("Profile")
-                }
-                .tag(3)
+        NavigationView {
+            TabView(selection: $selection) {
+                GameView(games: fakeGames)
+                    .tabItem {
+                        Image(systemName: "calendar.circle.fill")
+                        Text("Game")
+                    }
+                    .tag(0)
+                
+                Text("Ranking")
+                    .font(.system(size: 30))
+                    .tabItem {
+                        Image(systemName: "line.3.horizontal.circle.fill") // placeholder until a better icon is found
+                        Text("Ranking")
+                    }
+                    .tag(1)
+                
+                Text("Message")
+                    .font(.system(size: 30))
+                    .tabItem {
+                        Image(systemName: "message.circle.fill")
+                        Text("Message")
+                    }
+                    .tag(2)
+                
+                ProfileView()
+                    .tabItem {
+                        Image(systemName: "person.circle.fill")
+                        Text("Profile")
+                    }
+                    .tag(3)
+            }
         }
     }
 }
