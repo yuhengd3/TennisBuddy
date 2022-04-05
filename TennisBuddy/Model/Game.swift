@@ -7,7 +7,25 @@
 
 import Foundation
 
-struct Game {
+struct Game : Identifiable {
+    init(date: Date = Date(), owner: String = "", ownerAvatar: String? = nil, location: String = "", maxNumPlayers: Int = 2, players: [String] = [String](), note: String = "", status: Game.GameStatus = .toStart) {
+        self.id = date
+        self.date = date
+        self.owner = owner
+        self.ownerAvatar = ownerAvatar
+        self.location = location
+        self.maxNumPlayers = maxNumPlayers
+        self.players = players
+        self.note = note
+        self.status = status
+    }
+    
+    init() {
+        self.id = self.date
+    }
+    
+    var id: Date
+    
     enum GameStatus {
         case toStart
         case ongoing

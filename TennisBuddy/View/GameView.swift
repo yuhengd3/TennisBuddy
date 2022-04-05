@@ -9,9 +9,20 @@ import SwiftUI
 
 struct GameView: View {
     var games: [Game]
+    
+    init(games: [Game]) {
+        self.games = games
+        //Use this if NavigationBarTitle is with Large Font
+        //UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "SF Mono", size: 20)!]
+        // UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont.systemFont(ofSize: 20)]
+
+        //Use this if NavigationBarTitle is with displayMode = .inline
+        //UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "Georgia-Bold", size: 20)!]
+    }
+    
     var body: some View {
         ZStack {
-            VStack {
+            VStack(spacing: 0) {
                 // Header
                 ZStack {
                     Rectangle()
@@ -42,16 +53,33 @@ struct GameView: View {
                     }
                 }
                 
-                HStack {
-                    Text("Scheduled Games")
-                        .padding(.horizontal)
-                    
-                    Spacer()
+//                HStack {
+//                    Text("Scheduled Games")
+//                        .padding(.horizontal)
+//
+//                    Spacer()
+//                }
+                
+                NavigationView {
+                    List {
+                        ForEach(games) { game in
+                            NavigationLink {
+                                
+                            } label: {
+                                GameListRowView(game: game)
+                                    .mask(Color.black.opacity(game.players.count == game.maxNumPlayers ? 0.4 : 1))
+                            }
+                        }
+                        //.navigationBarHidden(true)
+                        .navigationTitle("Scheduled Games")
+                        .navigationBarTitleDisplayMode(.inline)
+        
+                    }
                 }
+                //.padding(.top, -50)
                 
                 
-                
-                Spacer()
+
 
             }
             
@@ -78,12 +106,12 @@ struct GameView: View {
 
 struct GameView_Previews: PreviewProvider {
     static let games = [
-        Game(date: Date(), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart),
-        Game(date: Date(), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart),
-        Game(date: Date(), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart),
-        Game(date: Date(), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart),
-        Game(date: Date(), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart),
-        Game(date: Date(), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart)
+        Game(date: Date(timeIntervalSinceNow: 100), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart),
+        Game(date: Date(timeIntervalSinceNow: 200), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 2, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart),
+        Game(date: Date(timeIntervalSinceNow: 300), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart),
+        Game(date: Date(timeIntervalSinceNow: 400), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 2, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart),
+        Game(date: Date(timeIntervalSinceNow: 500), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart),
+        Game(date: Date(timeIntervalSinceNow: 600), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart)
     ]
     static var previews: some View {
         GameView(games: games)

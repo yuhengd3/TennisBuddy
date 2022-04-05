@@ -7,6 +7,17 @@
 
 import SwiftUI
 
+let fakeGames = [
+    Game(date: Date(timeIntervalSinceNow: 100), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart),
+    Game(date: Date(timeIntervalSinceNow: 200), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart),
+    Game(date: Date(timeIntervalSinceNow: 300), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 2, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart),
+    Game(date: Date(timeIntervalSinceNow: 400), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart),
+    Game(date: Date(timeIntervalSinceNow: 500), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 2, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart),
+    Game(date: Date(timeIntervalSinceNow: 1101), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart),
+    Game(date: Date(timeIntervalSinceNow: 1000), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 2, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart),
+    Game(date: Date(timeIntervalSinceNow: 1200), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart)
+]
+
 struct ContentView: View {
     @State private var selection = 0
     
@@ -20,7 +31,7 @@ struct ContentView: View {
     // TODO: resize icons
     var body: some View {
         TabView(selection: $selection) {
-            GameView(games: [])
+            GameView(games: fakeGames)
                 .tabItem {
                     Image(systemName: "calendar.circle.fill")
                     Text("Game")
