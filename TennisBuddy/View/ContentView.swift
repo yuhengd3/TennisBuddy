@@ -28,7 +28,6 @@ struct ContentView: View {
         UITabBar.appearance().scrollEdgeAppearance = scrollEdgeAppearance
     }
     
-    // TODO: resize icons
     var body: some View {
         NavigationView {
             TabView(selection: $selection) {

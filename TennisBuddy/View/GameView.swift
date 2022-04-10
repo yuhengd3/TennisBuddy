@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GameView: View {
     var games: [Game]
+    @State private var showingAddGame = false
     
     init(games: [Game]) {
         self.games = games
@@ -53,14 +54,6 @@ struct GameView: View {
                     }
                 }
                 
-//                HStack {
-//                    Text("Scheduled Games")
-//                        .padding(.horizontal)
-//
-//                    Spacer()
-//                }
-                
-                
                 List {
                     ForEach(games) { game in
                         NavigationLink {
@@ -70,8 +63,8 @@ struct GameView: View {
                                 .mask(Color.black.opacity(game.players.count == game.maxNumPlayers ? 0.4 : 1))
                         }
                     }
-                    .navigationBarHidden(true)
                     .navigationTitle("Scheduled Games")
+                    .navigationBarHidden(true)
                     .navigationBarTitleDisplayMode(.inline)
     
                 }
@@ -90,13 +83,17 @@ struct GameView: View {
                     Spacer()
                     
                     Button(action: {
-                        
+                        showingAddGame.toggle()
                     }, label: {
                         Image(systemName: "plus.circle.fill")
                             .foregroundColor(Color("PrincetonOrange"))
                             .font(.system(size: 56))
                             .padding()
                     })
+                        .sheet(isPresented: $showingAddGame) {
+                            AddGameView()
+                        }
+                        
                 }
             }
         }
@@ -114,5 +111,6 @@ struct GameView_Previews: PreviewProvider {
     ]
     static var previews: some View {
         GameView(games: games)
+.previewInterfaceOrientation(.portrait)
     }
 }

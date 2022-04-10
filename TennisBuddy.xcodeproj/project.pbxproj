@@ -28,6 +28,7 @@
 		5813403527F032EC0006E93A /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5813403427F032EC0006E93A /* UserViewModel.swift */; };
 		5813403727F0349A0006E93A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5813403627F0349A0006E93A /* ProfileView.swift */; };
 		585CCE1227F81EB300706782 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585CCE1127F81EB300706782 /* LoginViewModel.swift */; };
+		5867702B28039DB100A3EC18 /* AddGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5867702A28039DB100A3EC18 /* AddGameView.swift */; };
 		58AF619927F61E3000CDAC49 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AF619827F61E3000CDAC49 /* AuthView.swift */; };
 		58AF619B27F65AD500CDAC49 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AF619A27F65AD500CDAC49 /* SignupView.swift */; };
 		58B63BDF27FA3E3700F4E13E /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B63BDE27FA3E3700F4E13E /* SignupViewModel.swift */; };
@@ -48,6 +49,7 @@
 		5813403427F032EC0006E93A /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		5813403627F0349A0006E93A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		585CCE1127F81EB300706782 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		5867702A28039DB100A3EC18 /* AddGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGameView.swift; sourceTree = "<group>"; };
 		58AF619827F61E3000CDAC49 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		58AF619A27F65AD500CDAC49 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		58B63BDE27FA3E3700F4E13E /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				58AF619A27F65AD500CDAC49 /* SignupView.swift */,
 				58B63BE027FB64FE00F4E13E /* GameView.swift */,
 				58B63BE427FB95AE00F4E13E /* GameListRowView.swift */,
+				5867702A28039DB100A3EC18 /* AddGameView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				5813403327F027A00006E93A /* UserModel.swift in Sources */,
 				5813400C27F013580006E93A /* ContentView.swift in Sources */,
 				585CCE1227F81EB300706782 /* LoginViewModel.swift in Sources */,
+				5867702B28039DB100A3EC18 /* AddGameView.swift in Sources */,
 				58B63BE127FB64FE00F4E13E /* GameView.swift in Sources */,
 				58AF619B27F65AD500CDAC49 /* SignupView.swift in Sources */,
 				58B63BE327FB664900F4E13E /* Game.swift in Sources */,
