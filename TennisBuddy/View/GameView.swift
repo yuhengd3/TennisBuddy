@@ -91,7 +91,7 @@ struct GameView: View {
                             .padding()
                     })
                         .sheet(isPresented: $showingAddGame) {
-                            AddGameView()
+                            AddGameView(showSheet: $showingAddGame)
                         }
                         
                 }
@@ -102,12 +102,12 @@ struct GameView: View {
 
 struct GameView_Previews: PreviewProvider {
     static let games = [
-        Game(date: Date(timeIntervalSinceNow: 100), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart),
-        Game(date: Date(timeIntervalSinceNow: 200), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 2, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart),
-        Game(date: Date(timeIntervalSinceNow: 300), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart),
-        Game(date: Date(timeIntervalSinceNow: 400), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 2, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart),
-        Game(date: Date(timeIntervalSinceNow: 500), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart),
-        Game(date: Date(timeIntervalSinceNow: 600), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart)
+        Game(date: Date(timeIntervalSinceNow: 100), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], description: "All ages are welcome", status: .toStart),
+        Game(date: Date(timeIntervalSinceNow: 200), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 2, players: ["Yuheng", "Joe"], description: "All ages are welcome", status: .toStart),
+        Game(date: Date(timeIntervalSinceNow: 300), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], description: "All ages are welcome", status: .toStart),
+        Game(date: Date(timeIntervalSinceNow: 400), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 2, players: ["Yuheng", "Joe"], description: "All ages are welcome", status: .toStart),
+        Game(date: Date(timeIntervalSinceNow: 500), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], description: "All ages are welcome", status: .toStart),
+        Game(date: Date(timeIntervalSinceNow: 600), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], description: "All ages are welcome", status: .toStart)
     ]
     static var previews: some View {
         GameView(games: games)

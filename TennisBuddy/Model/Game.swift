@@ -8,7 +8,7 @@
 import Foundation
 
 struct Game : Identifiable {
-    init(date: Date = Date(), owner: String = "", ownerAvatar: String? = nil, location: String = "", maxNumPlayers: Int = 2, players: [String] = [String](), note: String = "", status: Game.GameStatus = .toStart) {
+    init(date: Date = Date(), owner: String = "", ownerAvatar: String? = nil, location: String = "", maxNumPlayers: Int = 2, players: [String] = [String](), description: String = "", status: Game.GameStatus = .toStart) {
         self.id = date
         self.date = date
         self.owner = owner
@@ -16,7 +16,7 @@ struct Game : Identifiable {
         self.location = location
         self.maxNumPlayers = maxNumPlayers
         self.players = players
-        self.note = note
+        self.description = description
         self.status = status
     }
     
@@ -37,6 +37,6 @@ struct Game : Identifiable {
     var location: String = "" // TODO: change to map?
     var maxNumPlayers = 2
     var players = [String]()
-    var note: String = ""
+    var description: String = ""
     var status: GameStatus = .toStart
 }

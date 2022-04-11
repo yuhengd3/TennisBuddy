@@ -46,7 +46,7 @@ struct GameListRowView: View {
 }
 
 struct GameListRowView_Previews: PreviewProvider {
-    static let game = Game(date: Date(), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], note: "All ages are welcome", status: .toStart)
+    static let game = Game(date: Date(), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], description: "All ages are welcome", status: .toStart)
     static var previews: some View {
         GameListRowView(game: game)
             .previewLayout(.fixed(width: 300, height: 70))
