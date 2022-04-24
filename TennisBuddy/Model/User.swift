@@ -11,4 +11,7 @@ struct User {
     var username: String
     var uid: String
     var avatar: String?
+    var rating: Double?
+    var numGames = 0
+    var description: String?
 }

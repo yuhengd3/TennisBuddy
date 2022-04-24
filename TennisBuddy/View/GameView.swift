@@ -78,28 +78,6 @@ struct GameView: View {
                         .padding(.top, 20)
                         
                         VStack {
-//                            HStack(spacing: 0) {
-//                                Button(action: {
-//                                    listSelected = 0
-//                                }, label: {
-//                                    Text("All Games")
-//                                        .frame(width: 140, height: 40)
-//                                        .background(Color.gray)
-//                                        .border(Color.green)
-//                                        .foregroundColor(.black)
-//                                        .cornerRadius(10)
-//                                })
-//
-//                                Button(action: {
-//                                    listSelected = 1
-//                                }, label: {
-//                                    Text("My Games")
-//                                        .frame(width: 140, height: 40)
-//                                        .border(Color.green)
-//                                        .foregroundColor(.black)
-//                                })
-//                            }
-//                            .padding(6)
                             Picker("Favorite Color", selection: $listSelected) {
                                 Text("Upcoming Games").tag(0)
                                 Text("My Games").tag(1)
@@ -149,7 +127,7 @@ struct GameView: View {
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
         let user1 = User(username: "Ben4234", uid: "random_uid", avatar: nil)
-        let user2 = User(username: "Jack1", uid: "random", avatar: nil)
+        let user2 = User(username: "Jack1", uid: "random", avatar: nil, rating: 1000)
         let games: [Game] = [
             Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1),
             Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1, opponent: user2),

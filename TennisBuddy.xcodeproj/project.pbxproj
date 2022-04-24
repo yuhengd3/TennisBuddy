@@ -37,6 +37,7 @@
 		58B63BE527FB95AE00F4E13E /* GameListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B63BE427FB95AE00F4E13E /* GameListRowView.swift */; };
 		58DB95E1281467DF004BCDB5 /* GameDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DB95E0281467DF004BCDB5 /* GameDetailView.swift */; };
 		58DB95E3281469C9004BCDB5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DB95E2281469C9004BCDB5 /* User.swift */; };
+		58DB95E52815FF2A004BCDB5 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DB95E42815FF2A004BCDB5 /* UserProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		58B63BE427FB95AE00F4E13E /* GameListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListRowView.swift; sourceTree = "<group>"; };
 		58DB95E0281467DF004BCDB5 /* GameDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailView.swift; sourceTree = "<group>"; };
 		58DB95E2281469C9004BCDB5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		58DB95E42815FF2A004BCDB5 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 				58B63BE427FB95AE00F4E13E /* GameListRowView.swift */,
 				5867702A28039DB100A3EC18 /* AddGameView.swift */,
 				58DB95E0281467DF004BCDB5 /* GameDetailView.swift */,
+				58DB95E42815FF2A004BCDB5 /* UserProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				585CCE1227F81EB300706782 /* LoginViewModel.swift in Sources */,
 				5867702B28039DB100A3EC18 /* AddGameView.swift in Sources */,
 				58B63BE127FB64FE00F4E13E /* GameView.swift in Sources */,
+				58DB95E52815FF2A004BCDB5 /* UserProfileView.swift in Sources */,
 				58AF619B27F65AD500CDAC49 /* SignupView.swift in Sources */,
 				58B63BE327FB664900F4E13E /* Game.swift in Sources */,
 				58B63BDF27FA3E3700F4E13E /* SignupViewModel.swift in Sources */,

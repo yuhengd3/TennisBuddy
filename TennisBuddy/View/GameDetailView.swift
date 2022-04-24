@@ -40,32 +40,45 @@ struct GameDetailView: View {
                     let owner = game.owner
                     HStack {
                         Spacer(minLength: 0)
-                        VStack {
+                        VStack(spacing: 6) {
                             Image("DefaultAvatar")
                                 .resizable()
                                 .frame(width: 60, height: 60)
                                 .clipShape(Circle())
                                 .padding(.horizontal, 15)
                             Text("\(owner.username)")
+                            if let rating = owner.rating {
+                                Text("Rating: \(Int(rating))")
+                            } else {
+                                Text("Rating: N/A")
+                            }
+                            Spacer(minLength: 0)
                         }
+                        .frame(height: 200)
                         
                         Spacer(minLength: 0)
                         
-                        ZStack {
-                            Rectangle()
-                                .fill(.black)
-                                .frame(width: 90, height: 4)
-                                .mask(LinearGradient(gradient: Gradient(colors: [.clear, .black, .black, .clear]), startPoint: .leading, endPoint: .trailing))
-                            
-                            Circle()
-                                .fill(.black)
-                                .frame(width: 40, height: 40)
-                            
-                            Text("VS")
-                                .foregroundColor(.white)
-                        }
-                        Spacer(minLength: 0)
                         VStack {
+                            Spacer()
+                                .frame(height: 12)
+                            ZStack {
+                                Rectangle()
+                                    .fill(.black)
+                                    .frame(width: 90, height: 4)
+                                    .mask(LinearGradient(gradient: Gradient(colors: [.clear, .black, .black, .clear]), startPoint: .leading, endPoint: .trailing))
+                                
+                                Circle()
+                                    .fill(.black)
+                                    .frame(width: 40, height: 40)
+                                
+                                Text("VS")
+                                    .foregroundColor(.white)
+                            }
+                            Spacer(minLength: 0)
+                        }
+                        .frame(height: 200)
+                        Spacer(minLength: 0)
+                        VStack(spacing: 6) {
                             if let oppo = game.opponent {
                                 Image("DefaultAvatar")
                                     .resizable()
@@ -73,6 +86,11 @@ struct GameDetailView: View {
                                     .clipShape(Circle())
                                     .padding(.horizontal, 15)
                                 Text("\(oppo.username)")
+                                if let rating = oppo.rating {
+                                    Text("Rating: \(Int(rating))")
+                                } else {
+                                    Text("Rating: N/A")
+                                }
                             } else {
                                 Image("QuestionMark")
                                     .resizable()
@@ -81,7 +99,9 @@ struct GameDetailView: View {
                                     .clipShape(Circle())
                                     .padding(.horizontal, 25)
                             }
+                            Spacer(minLength: 0)
                         }
+                        .frame(height: 200)
                         Spacer(minLength: 0)
                     }
                     
@@ -119,8 +139,9 @@ struct GameDetailView: View {
 struct GameDetailView_Previews: PreviewProvider {
     static var previews: some View {
         let user = User(username: "yuheng", uid: "134A8B23", avatar: nil)
+        let user2 = User(username: "yuheng", uid: "134A8B23", avatar: nil, rating: 300)
         let disc = "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga."
-        let game = Game(date: Date.now, location: "WashU", description: disc, owner: user, opponent: nil)
+        let game = Game(date: Date.now, location: "WashU", description: disc, owner: user, opponent: user2)
         GameDetailView(game: game)
     }
 }

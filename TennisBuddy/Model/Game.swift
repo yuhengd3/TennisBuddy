@@ -13,6 +13,9 @@ struct Game : Identifiable {
         case toStart
         case ongoing
         case completed
+        case missResult
+        case ownerWin
+        case oppoWin
     }
 
     var date: Date
