@@ -13,7 +13,7 @@ struct AddGameView: View {
     
     @State private var location: String = ""
     @State private var date = Date()
-    @State private var numPlayers = 2
+    @State private var numSets = 3
     @State private var description = ""
     
     var body: some View {
@@ -88,10 +88,9 @@ struct AddGameView: View {
                                 .foregroundColor(.gray)
                                 .font(.system(size: 22))
                                 .padding(.maximum(4, 4))
-                            Picker("Number of Players", selection: $numPlayers) {
-                                ForEach(2 ..< 11) {
-                                    Text("\($0)").tag($0)
-                                }
+                            Picker("Number of Sets", selection: $numSets) {
+                                Text("3").tag(3)
+                                Text("5").tag(5)
                             }
                             .navigationBarTitle("")
                             .navigationBarHidden(true)

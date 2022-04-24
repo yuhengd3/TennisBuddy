@@ -19,13 +19,13 @@ struct GameListRowView: View {
     
     var body: some View {
         HStack {
-            VStack(spacing: 0) {
+            VStack(spacing: 4) {
                 Image("DefaultAvatar")
                     .resizable()
-                    .frame(width: 50, height: 50)
+                    .frame(width: 40, height: 40)
                     .clipShape(Circle())
                     .padding(.horizontal)
-                Text(game.owner)
+                Text(game.owner.username)
                     .font(.system(size: 14))
             }
             
@@ -33,9 +33,10 @@ struct GameListRowView: View {
                 Spacer()
                 Text(dateFormatter.string(from: game.date))
                 Spacer()
-                HStack {
-                    Text("\(game.players.count) / \(game.maxNumPlayers)")
-                    Text("@ " + game.location)
+                if let oppo = game.opponent {
+                    Text("V.S. \(oppo.username)")
+                } else {
+                    Text("Needs Opponent")
                 }
                 Spacer()
             }
@@ -46,9 +47,9 @@ struct GameListRowView: View {
 }
 
 struct GameListRowView_Previews: PreviewProvider {
-    static let game = Game(date: Date(), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], description: "All ages are welcome", status: .toStart)
     static var previews: some View {
-        GameListRowView(game: game)
-            .previewLayout(.fixed(width: 300, height: 70))
+        let user1 = User(username: "Ben4234", uid: "random_uid", avatar: nil)
+        let game = Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1)
+        return GameListRowView(game: game).previewLayout(.fixed(width: 300, height: 70))
     }
 }

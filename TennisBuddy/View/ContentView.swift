@@ -7,19 +7,22 @@
 
 import SwiftUI
 
-let fakeGames = [
-    Game(date: Date(timeIntervalSinceNow: 100), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], description: "All ages are welcome", status: .toStart),
-    Game(date: Date(timeIntervalSinceNow: 200), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], description: "All ages are welcome", status: .toStart),
-    Game(date: Date(timeIntervalSinceNow: 300), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 2, players: ["Yuheng", "Joe"], description: "All ages are welcome", status: .toStart),
-    Game(date: Date(timeIntervalSinceNow: 400), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], description: "All ages are welcome", status: .toStart),
-    Game(date: Date(timeIntervalSinceNow: 500), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 2, players: ["Yuheng", "Joe"], description: "All ages are welcome", status: .toStart),
-    Game(date: Date(timeIntervalSinceNow: 1101), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], description: "All ages are welcome", status: .toStart),
-    Game(date: Date(timeIntervalSinceNow: 1000), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 2, players: ["Yuheng", "Joe"], description: "All ages are welcome", status: .toStart),
-    Game(date: Date(timeIntervalSinceNow: 1200), owner: "Jack Ma", ownerAvatar: nil, location: "Tao Tennis Center", maxNumPlayers: 4, players: ["Yuheng", "Joe"], description: "All ages are welcome", status: .toStart)
+let user1 = User(username: "Ben4234", uid: "random_uid", avatar: nil)
+let user2 = User(username: "Jack1", uid: "random", avatar: nil)
+let disc = "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga."
+let fgames: [Game] = [
+    Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1),
+    Game(date: Date(timeIntervalSinceNow: 20), location: "Tao's Tennis Center", description: "Fun!", owner: user1, opponent: user2),
+    Game(date: Date(timeIntervalSinceNow: 100), location: "Tao's Tennis Center", description: disc, owner: user1),
+    Game(date: Date(timeIntervalSinceNow: 300), location: "Tao's Tennis Center", description: disc, owner: user1, opponent: user2),
+    Game(date: Date(timeIntervalSinceNow: 400), location: "Tao's Tennis Center", description: "Fun!", owner: user1),
+    Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1, opponent: user2),
+    Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1),
+    Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1, opponent: user2)
 ]
 
 struct ContentView: View {
-    @State private var selection = 0
+    @State private var tabSelected = 0
     
     let scrollEdgeAppearance =  UITabBarAppearance()
     
@@ -29,38 +32,37 @@ struct ContentView: View {
     }
     
     var body: some View {
-        NavigationView {
-            TabView(selection: $selection) {
-                GameView(games: fakeGames)
-                    .tabItem {
-                        Image(systemName: "calendar.circle.fill")
-                        Text("Game")
-                    }
-                    .tag(0)
-                
-                Text("Ranking")
-                    .font(.system(size: 30))
-                    .tabItem {
-                        Image(systemName: "line.3.horizontal.circle.fill") // placeholder until a better icon is found
-                        Text("Ranking")
-                    }
-                    .tag(1)
-                
-                Text("Message")
-                    .font(.system(size: 30))
-                    .tabItem {
-                        Image(systemName: "message.circle.fill")
-                        Text("Message")
-                    }
-                    .tag(2)
-                
-                ProfileView()
-                    .tabItem {
-                        Image(systemName: "person.circle.fill")
-                        Text("Profile")
-                    }
-                    .tag(3)
-            }
+        
+        TabView(selection: $tabSelected) {
+            GameView(games: fgames)
+                .tabItem {
+                    Image(systemName: "calendar.circle.fill")
+                    Text("Game")
+                }
+                .tag(0)
+            
+            Text("Ranking")
+                .font(.system(size: 30))
+                .tabItem {
+                    Image(systemName: "line.3.horizontal.circle.fill") // placeholder until a better icon is found
+                    Text("Ranking")
+                }
+                .tag(1)
+            
+            Text("Message")
+                .font(.system(size: 30))
+                .tabItem {
+                    Image(systemName: "message.circle.fill")
+                    Text("Message")
+                }
+                .tag(2)
+            
+            ProfileView()
+                .tabItem {
+                    Image(systemName: "person.circle.fill")
+                    Text("Profile")
+                }
+                .tag(3)
         }
     }
 }

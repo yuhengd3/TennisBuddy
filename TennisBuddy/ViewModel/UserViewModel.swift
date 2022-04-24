@@ -8,7 +8,7 @@
 import SwiftUI
 
 class UserViewModel: ObservableObject {
-    @Published private(set) var model = UserModel()
+    @Published private(set) var model = AuthModel()
     
     // MARK: - Intent(s)
     

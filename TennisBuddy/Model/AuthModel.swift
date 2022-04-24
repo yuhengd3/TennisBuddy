@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserModel {
+struct AuthModel {
     var uid: String?
     var email: String?
 }

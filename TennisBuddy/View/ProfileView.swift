@@ -31,6 +31,9 @@ struct ProfileView: View {
             
             Spacer()
         }
+        .navigationTitle("Profile")
+        .navigationBarHidden(true)
+        .navigationBarTitleDisplayMode(.inline)
         
     }
 }
