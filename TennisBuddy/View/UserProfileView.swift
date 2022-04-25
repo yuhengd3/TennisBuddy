@@ -78,6 +78,7 @@ struct UserProfileView: View {
             
             Spacer(minLength: 0)
         }
+        .navigationTitle("User Profile")
     }
 }
 
@@ -135,12 +136,14 @@ struct GameItemView : View {
             VStack(spacing: 4) {
                 Image("DefaultAvatar")
                     .resizable()
+                    .scaledToFill()
                     .frame(width: 40, height: 40)
                     .clipShape(Circle())
                     .padding(.horizontal)
                 Text(oppo.username)
                     .font(.system(size: 14))
             }
+            .padding(.trailing, 14)
         }
         .frame(height: 70)
     }

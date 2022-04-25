@@ -9,8 +9,8 @@ import SwiftUI
 
 let disc = "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga."
 let desc1 = "At vero eos et accusamus  mollitia animi, id est laborum et dolorum fuga."
-let user = User(username: "Yuheng Ding", uid: "qwerqewrwq", avatar: nil, rating: 123, description: desc1)
-let user1 = User(username: "Ben4234", uid: "random_uid", avatar: nil)
+let user = User(username: "John Doe", uid: "qwerqewrwq", avatar: nil, rating: 123, description: desc1)
+let user1 = User(username: "Ben4234", uid: "random_uid", avatar: nil, rating: 432)
 let user2 = User(username: "Jack1", uid: "random", avatar: nil, rating: 4020)
 
 let fgames: [Game] = [
@@ -55,11 +55,10 @@ struct ContentView: View {
                 }
                 .tag(0)
             
-            Text("Ranking")
-                .font(.system(size: 30))
+            LeaderboardView()
                 .tabItem {
                     Image(systemName: "line.3.horizontal.circle.fill") // placeholder until a better icon is found
-                    Text("Ranking")
+                    Text("Leaderboard")
                 }
                 .tag(1)
             

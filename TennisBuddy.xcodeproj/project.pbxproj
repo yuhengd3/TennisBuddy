@@ -38,6 +38,7 @@
 		58DB95E1281467DF004BCDB5 /* GameDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DB95E0281467DF004BCDB5 /* GameDetailView.swift */; };
 		58DB95E3281469C9004BCDB5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DB95E2281469C9004BCDB5 /* User.swift */; };
 		58DB95E52815FF2A004BCDB5 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DB95E42815FF2A004BCDB5 /* UserProfileView.swift */; };
+		58DB95E7281610BA004BCDB5 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DB95E6281610BA004BCDB5 /* LeaderboardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		58DB95E0281467DF004BCDB5 /* GameDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailView.swift; sourceTree = "<group>"; };
 		58DB95E2281469C9004BCDB5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		58DB95E42815FF2A004BCDB5 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		58DB95E6281610BA004BCDB5 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 				5867702A28039DB100A3EC18 /* AddGameView.swift */,
 				58DB95E0281467DF004BCDB5 /* GameDetailView.swift */,
 				58DB95E42815FF2A004BCDB5 /* UserProfileView.swift */,
+				58DB95E6281610BA004BCDB5 /* LeaderboardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				5813403127F022B30006E93A /* LoginView.swift in Sources */,
 				58B63BE527FB95AE00F4E13E /* GameListRowView.swift in Sources */,
 				58DB95E1281467DF004BCDB5 /* GameDetailView.swift in Sources */,
+				58DB95E7281610BA004BCDB5 /* LeaderboardView.swift in Sources */,
 				58DB95E3281469C9004BCDB5 /* User.swift in Sources */,
 				5813403327F027A00006E93A /* AuthModel.swift in Sources */,
 				5813400C27F013580006E93A /* ContentView.swift in Sources */,
