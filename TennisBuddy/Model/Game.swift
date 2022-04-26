@@ -9,8 +9,8 @@ import Foundation
 
 struct Game : Identifiable {
     
-    enum GameStatus {
-        case toStart
+    enum GameStatus: Int {
+        case toStart = 0
         case ongoing
         case completed
         case missResult

@@ -35,6 +35,9 @@
 		58B63BE127FB64FE00F4E13E /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B63BE027FB64FE00F4E13E /* GameView.swift */; };
 		58B63BE327FB664900F4E13E /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B63BE227FB664900F4E13E /* Game.swift */; };
 		58B63BE527FB95AE00F4E13E /* GameListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B63BE427FB95AE00F4E13E /* GameListRowView.swift */; };
+		58D05A0E28183FD400BD32FE /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D05A0D28183FD400BD32FE /* GameViewModel.swift */; };
+		58D05A102818408400BD32FE /* GameRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D05A0F2818408400BD32FE /* GameRepository.swift */; };
+		58D05A122818443500BD32FE /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D05A112818443500BD32FE /* UserRepository.swift */; };
 		58DB95E1281467DF004BCDB5 /* GameDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DB95E0281467DF004BCDB5 /* GameDetailView.swift */; };
 		58DB95E3281469C9004BCDB5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DB95E2281469C9004BCDB5 /* User.swift */; };
 		58DB95E52815FF2A004BCDB5 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DB95E42815FF2A004BCDB5 /* UserProfileView.swift */; };
@@ -60,6 +63,9 @@
 		58B63BE027FB64FE00F4E13E /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		58B63BE227FB664900F4E13E /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		58B63BE427FB95AE00F4E13E /* GameListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListRowView.swift; sourceTree = "<group>"; };
+		58D05A0D28183FD400BD32FE /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		58D05A0F2818408400BD32FE /* GameRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRepository.swift; sourceTree = "<group>"; };
+		58D05A112818443500BD32FE /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		58DB95E0281467DF004BCDB5 /* GameDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailView.swift; sourceTree = "<group>"; };
 		58DB95E2281469C9004BCDB5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		58DB95E42815FF2A004BCDB5 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
@@ -114,6 +120,8 @@
 				585CCE0E27F81E1100706782 /* View */,
 				585CCE0F27F81E2D00706782 /* Model */,
 				585CCE1027F81E3E00706782 /* ViewModel */,
+				58D05A0F2818408400BD32FE /* GameRepository.swift */,
+				58D05A112818443500BD32FE /* UserRepository.swift */,
 			);
 			path = TennisBuddy;
 			sourceTree = "<group>";
@@ -130,14 +138,8 @@
 			isa = PBXGroup;
 			children = (
 				5813400B27F013580006E93A /* ContentView.swift */,
-				5813403027F022B30006E93A /* LoginView.swift */,
-				5813403627F0349A0006E93A /* ProfileView.swift */,
-				58AF619827F61E3000CDAC49 /* AuthView.swift */,
-				58AF619A27F65AD500CDAC49 /* SignupView.swift */,
-				58B63BE027FB64FE00F4E13E /* GameView.swift */,
-				58B63BE427FB95AE00F4E13E /* GameListRowView.swift */,
-				5867702A28039DB100A3EC18 /* AddGameView.swift */,
-				58DB95E0281467DF004BCDB5 /* GameDetailView.swift */,
+				58D05A0C2817467900BD32FE /* Profile */,
+				58D05A0B2817466600BD32FE /* Game */,
 				58DB95E42815FF2A004BCDB5 /* UserProfileView.swift */,
 				58DB95E6281610BA004BCDB5 /* LeaderboardView.swift */,
 			);
@@ -160,8 +162,31 @@
 				5813403427F032EC0006E93A /* UserViewModel.swift */,
 				585CCE1127F81EB300706782 /* LoginViewModel.swift */,
 				58B63BDE27FA3E3700F4E13E /* SignupViewModel.swift */,
+				58D05A0D28183FD400BD32FE /* GameViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		58D05A0B2817466600BD32FE /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				58B63BE027FB64FE00F4E13E /* GameView.swift */,
+				58B63BE427FB95AE00F4E13E /* GameListRowView.swift */,
+				5867702A28039DB100A3EC18 /* AddGameView.swift */,
+				58DB95E0281467DF004BCDB5 /* GameDetailView.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		58D05A0C2817467900BD32FE /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				5813403627F0349A0006E93A /* ProfileView.swift */,
+				58AF619827F61E3000CDAC49 /* AuthView.swift */,
+				58AF619A27F65AD500CDAC49 /* SignupView.swift */,
+				5813403027F022B30006E93A /* LoginView.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,7 +291,10 @@
 				58AF619B27F65AD500CDAC49 /* SignupView.swift in Sources */,
 				58B63BE327FB664900F4E13E /* Game.swift in Sources */,
 				58B63BDF27FA3E3700F4E13E /* SignupViewModel.swift in Sources */,
+				58D05A0E28183FD400BD32FE /* GameViewModel.swift in Sources */,
 				5813403527F032EC0006E93A /* UserViewModel.swift in Sources */,
+				58D05A122818443500BD32FE /* UserRepository.swift in Sources */,
+				58D05A102818408400BD32FE /* GameRepository.swift in Sources */,
 				5813403727F0349A0006E93A /* ProfileView.swift in Sources */,
 				5813400A27F013580006E93A /* TennisBuddyApp.swift in Sources */,
 			);

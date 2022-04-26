@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GameView: View {
     var games: [Game]
+    let gameViewModel = GameViewModel()
     @State private var showingAddGame = false
     @State private var listSelected = 0
     
