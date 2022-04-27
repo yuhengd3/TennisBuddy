@@ -33,3 +33,17 @@ func getOwnername(of: Game) -> String {
 func getOwnerAvatar(of: Game) -> String? {
     UserRepository.instance.fetchUser(uid: of.owner)?.avatar
 }
+
+func getOpponame(of: Game) -> String? {
+    if let oppoId = of.opponent {
+        return UserRepository.instance.fetchUser(uid: oppoId)!.username
+    }
+    return nil
+}
+
+func getOppoAvatar(of: Game) -> String? {
+    if let oppoId = of.opponent {
+        return UserRepository.instance.fetchUser(uid: oppoId)!.avatar
+    }
+    return nil
+}

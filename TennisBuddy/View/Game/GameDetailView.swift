@@ -6,36 +6,28 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
 
 struct GameDetailView: View {
-    var game: Game
     let dateFormatter = DateFormatter()
-    let userRepo = UserRepository.instance
-    let owner: User
-    let opponent: User?
+    @ObservedObject var vm : GameDetailViewModel
     
     init(game: Game) {
-        self.game = game
+        vm = GameDetailViewModel(game: game)
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
-        owner = userRepo.fetchUser(uid: game.owner)!
-        if let o = game.opponent {
-            opponent = userRepo.fetchUser(uid: o)
-        } else {
-            opponent = nil
-        }
     }
     
     var body: some View {
         HStack {
             VStack {
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("Time: \(dateFormatter.string(from: game.date))")
-                    Text("Location: \(game.location)")
+                    Text("Time: \(dateFormatter.string(from: vm.game.date))")
+                    Text("Location: \(vm.game.location)")
                     HStack {
-                        Text("Number of Sets: \(game.numSets)")
+                        Text("Number of Sets: \(vm.game.numSets)")
                             .padding(.trailing)
-                        if game.numSets == 3 {
+                        if vm.game.numSets == 3 {
                             Text("(90 min)")
                         } else {
                             Text("(2 h 45 min)")
@@ -43,7 +35,7 @@ struct GameDetailView: View {
                         
                     }
                     Text("Description:")
-                    Text(game.description)
+                    Text(vm.game.description)
                         .padding(.bottom, 50)
                     
                     HStack {
@@ -54,8 +46,8 @@ struct GameDetailView: View {
                                 .frame(width: 60, height: 60)
                                 .clipShape(Circle())
                                 .padding(.horizontal, 15)
-                            Text("\(owner.username)")
-                            if let rating = owner.rating {
+                            Text("\(vm.owner.username)")
+                            if let rating = vm.owner.rating {
                                 Text("Rating: \(Int(rating))")
                             } else {
                                 Text("Rating: N/A")
@@ -87,7 +79,7 @@ struct GameDetailView: View {
                         .frame(height: 200)
                         Spacer(minLength: 0)
                         VStack(spacing: 6) {
-                            if let oppo = opponent {
+                            if let oppo = vm.opponent {
                                 Image("DefaultAvatar")
                                     .resizable()
                                     .frame(width: 60, height: 60)
@@ -119,9 +111,9 @@ struct GameDetailView: View {
                 }
                 .padding(26)
                 
-                if game.opponent == nil {
+                if vm.showJoinButton() {
                     Button {
-                        // TODO
+                        vm.joinGame()
                     } label: {
                         HStack {
                             Spacer()

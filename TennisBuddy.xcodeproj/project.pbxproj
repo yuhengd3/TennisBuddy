@@ -29,6 +29,7 @@
 		5813403727F0349A0006E93A /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5813403627F0349A0006E93A /* ProfileView.swift */; };
 		585CCE1227F81EB300706782 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585CCE1127F81EB300706782 /* LoginViewModel.swift */; };
 		5867702B28039DB100A3EC18 /* AddGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5867702A28039DB100A3EC18 /* AddGameView.swift */; };
+		586F8CF42818E11C007FD1EE /* GameDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586F8CF32818E11C007FD1EE /* GameDetailViewModel.swift */; };
 		58AF619927F61E3000CDAC49 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AF619827F61E3000CDAC49 /* AuthView.swift */; };
 		58AF619B27F65AD500CDAC49 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AF619A27F65AD500CDAC49 /* SignupView.swift */; };
 		58B63BDF27FA3E3700F4E13E /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B63BDE27FA3E3700F4E13E /* SignupViewModel.swift */; };
@@ -58,6 +59,7 @@
 		5813403627F0349A0006E93A /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		585CCE1127F81EB300706782 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		5867702A28039DB100A3EC18 /* AddGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGameView.swift; sourceTree = "<group>"; };
+		586F8CF32818E11C007FD1EE /* GameDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailViewModel.swift; sourceTree = "<group>"; };
 		58AF619827F61E3000CDAC49 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		58AF619A27F65AD500CDAC49 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		58B63BDE27FA3E3700F4E13E /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				585CCE1127F81EB300706782 /* LoginViewModel.swift */,
 				58B63BDE27FA3E3700F4E13E /* SignupViewModel.swift */,
 				58D05A0D28183FD400BD32FE /* GameViewModel.swift */,
+				586F8CF32818E11C007FD1EE /* GameDetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				58AF619927F61E3000CDAC49 /* AuthView.swift in Sources */,
 				5813403127F022B30006E93A /* LoginView.swift in Sources */,
 				58B63BE527FB95AE00F4E13E /* GameListRowView.swift in Sources */,
+				586F8CF42818E11C007FD1EE /* GameDetailViewModel.swift in Sources */,
 				58DB95E1281467DF004BCDB5 /* GameDetailView.swift in Sources */,
 				58DB95E7281610BA004BCDB5 /* LeaderboardView.swift in Sources */,
 				58D05A1428189B5500BD32FE /* ProfileGameItemView.swift in Sources */,
