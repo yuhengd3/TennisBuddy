@@ -8,68 +8,74 @@
 import SwiftUI
 
 struct LeaderboardView: View {
+    @ObservedObject var userRepo = UserRepository.instance
+    @ObservedObject var imageRepo = ImageRepository.instance
+    
     var body: some View {
-        VStack(spacing: 0) {
-            ZStack {
-                Rectangle()
-                    .foregroundColor(Color("PrincetonOrange"))
-                    .ignoresSafeArea()
-                    .frame(height: 80)
-                    
-                Text("Leaderboard")
-                    .font(.largeTitle)
-                    .foregroundColor(.white)
+        if userRepo.users.count < 4 {
+            Text("Too Few Players")
+                .padding()
+        } else {
+            let sortedUsers = userRepo.users.sorted {
+                $0.rating! > $1.rating! || $0.numGames > $1.numGames
             }
-            
-            ScrollView(showsIndicators: false) {
-                Spacer()
-                    .frame(height: 20)
-                
-                
+            VStack(spacing: 0) {
                 ZStack {
+                    Rectangle()
+                        .foregroundColor(Color("PrincetonOrange"))
+                        .ignoresSafeArea()
+                        .frame(height: 80)
+                        
+                    Text("Leaderboard")
+                        .font(.largeTitle)
+                        .foregroundColor(.white)
+                }
+                
+                ScrollView(showsIndicators: false) {
+                    Spacer()
+                        .frame(height: 20)
                     
                     
-                    VStack {
-                        Spacer()
-                            .frame(height: 70)
-                        HStack {
-                            UserBlockView(user: user1, radius: 60, idx: 2, img: "Stock2")
+                    ZStack {
+                        
+                        
+                        VStack {
+                            Spacer()
+                                .frame(height: 70)
+                            HStack {
+                                UserBlockView(user: sortedUsers[1], radius: 60, idx: 2)
+                                
+                                Spacer()
+                                    .frame(width: 50)
+                                
+                                UserBlockView(user: sortedUsers[2], radius: 60, idx: 3)
+                            }
+                        }
+                        
+                        VStack {
+                            UserBlockView(user: sortedUsers[0], radius: 70, idx: 1)
                             
                             Spacer()
-                                .frame(width: 50)
-                            
-                            UserBlockView(user: user2, radius: 60, idx: 3, img: "Stock3")
                         }
                     }
                     
-                    VStack {
-                        UserBlockView(user: user, radius: 70, idx: 1, img: "Stock1")
-                        
-                        Spacer()
+                    VStack(spacing: 0) {
+                        // https://stackoverflow.com/questions/57244713/get-index-in-foreach-in-swiftui
+                        ForEach(3..<sortedUsers.count) { i in
+                            UserRowView(user: sortedUsers[i], idx: i + 1)
+                        }
                     }
+                    
+                    
+                    
+                    Spacer()
                 }
-                
-                VStack(spacing: 0) {
-                    UserRowView(user: user1, idx: 4)
-                    
-                    UserRowView(user: user, idx: 5)
-                    
-                    UserRowView(user: user2, idx: 6)
-                    
-                    UserRowView(user: user1, idx: 7)
-                    
-                    UserRowView(user: user1, idx: 8)
-                    
-                    UserRowView(user: user, idx: 9)
-                    
-                    UserRowView(user: user2, idx: 10)
-                }
-                
-                
-                
-                Spacer()
+            }
+            .onAppear {
+                userRepo.refresh()
             }
         }
+        
     }
 }
 
@@ -77,21 +83,30 @@ struct UserBlockView: View {
     var user: User
     var radius: CGFloat
     var idx: Int
-    var img: String
     
     var body: some View {
         VStack {
             Text("\(idx)")
                 .font(.system(size: 24))
                 .fontWeight(.semibold)
-            Image(img)
-                .resizable()
-                .scaledToFill()
-                .frame(width: radius * 2, height: radius * 2)
-                .clipShape(Circle())
-                .overlay(Circle().stroke(Color("CarolinaBlue"), lineWidth: 4))
-                .padding(.horizontal)
-            
+            if user.avatar != nil && ImageRepository.instance.imageDict[user.avatar!] != nil {
+                Image(uiImage: ImageRepository.instance.imageDict[user.avatar!]!)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: radius * 2, height: radius * 2)
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color("CarolinaBlue"), lineWidth: 4))
+                    .padding(.horizontal)
+            } else {
+                Image("DefaultAvatar")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: radius * 2, height: radius * 2)
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color("CarolinaBlue"), lineWidth: 4))
+                    .padding(.horizontal)
+            }
+
             Spacer()
                 .frame(height: 30)
             

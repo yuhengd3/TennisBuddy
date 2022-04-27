@@ -16,4 +16,5 @@ struct User {
     var description: String?
     
     var documentId: String?
+    var id = UUID()
 }
