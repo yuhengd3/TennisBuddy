@@ -44,10 +44,13 @@ class GameRepository: ObservableObject {
                     $0.date < $1.date
                 }
                 
-                self.games = updatedGames
-                self.futureGames = updatedGames.filter {
-                    $0.date > Date.now
+                if updatedGames != self.games {
+                    self.games = updatedGames
+                    self.futureGames = updatedGames.filter {
+                        $0.date > Date.now
+                    }
                 }
+                
             }
         }
     }

@@ -58,7 +58,7 @@ struct GameView: View {
                                     GameDetailView(game: game)
                                 } label: {
                                     GameListRowView(game: game)
-                                        .mask(Color.black.opacity(game.opponent != nil ? 0.4 : 1))
+                                        .mask(Color.black.opacity(game.opponent != nil ? 0.6 : 1))
                                 }
                                 .navigationTitle("")
                             }

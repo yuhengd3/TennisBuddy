@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Game : Identifiable {
+struct Game : Identifiable, Equatable {
     
     enum GameStatus: Int {
         case toStart = 0
@@ -29,4 +29,19 @@ struct Game : Identifiable {
     var documentId: String?
     
     var id = UUID()
+    
+    static func == (lhs: Game, rhs: Game) -> Bool {
+        if lhs.id == rhs.id {
+            return true
+        }
+        return
+            lhs.documentId == rhs.documentId &&
+            lhs.date == rhs.date &&
+            lhs.location == rhs.location &&
+            lhs.owner == rhs.owner &&
+            lhs.opponent == rhs.opponent &&
+            lhs.numSets == rhs.numSets &&
+            lhs.status == rhs.status &&
+            lhs.description == rhs.description
+    }
 }
