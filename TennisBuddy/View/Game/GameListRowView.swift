@@ -12,6 +12,8 @@ struct GameListRowView: View {
     var game: Game
     let dateFormatter = DateFormatter()
     
+    @ObservedObject var imageRepo = ImageRepository.instance
+    
     init(game: Game) {
         self.game = game
         dateFormatter.dateStyle = .medium
@@ -21,11 +23,22 @@ struct GameListRowView: View {
     var body: some View {
         HStack {
             VStack(spacing: 4) {
-                Image("DefaultAvatar")
-                    .resizable()
-                    .frame(width: 40, height: 40)
-                    .clipShape(Circle())
-                    .padding(.horizontal)
+                if getOwnerAvatar(of: game) != nil && imageRepo.imageDict[getOwnerAvatar(of: game)!] != nil {
+                    Image(uiImage: imageRepo.imageDict[getOwnerAvatar(of: game)!]!)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 40, height: 40)
+                        .clipShape(Circle())
+                        .padding(.horizontal)
+                } else {
+                    Image("DefaultAvatar")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 40, height: 40)
+                        .clipShape(Circle())
+                        .padding(.horizontal)
+                }
+                
                 Text(getOwnername(of: game))
                     .font(.system(size: 14))
             }
@@ -35,9 +48,9 @@ struct GameListRowView: View {
                 Text(dateFormatter.string(from: game.date))
                 Spacer()
                 if let oppo = getOpponame(of: game) {
-                    Text("V.S. \(oppo)")
+                    Text("VS. \(oppo)")
                 } else {
-                    Text("Needs Opponent")
+                    Text("Look for opponent")
                 }
                 Spacer()
             }

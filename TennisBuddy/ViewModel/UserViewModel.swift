@@ -9,6 +9,8 @@ import SwiftUI
 
 class UserViewModel: ObservableObject {
     @Published var currUser: User?
+    @Published var avatar: UIImage = UIImage()
+    @Published var avatarReady: Bool = false
     
     // MARK: - Intent(s)
     

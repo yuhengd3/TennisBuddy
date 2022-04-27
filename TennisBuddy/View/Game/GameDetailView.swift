@@ -11,6 +11,7 @@ import FirebaseFirestore
 struct GameDetailView: View {
     let dateFormatter = DateFormatter()
     @ObservedObject var vm : GameDetailViewModel
+    @ObservedObject var imageRepo = ImageRepository.instance
     
     init(game: Game) {
         vm = GameDetailViewModel(game: game)
@@ -41,11 +42,21 @@ struct GameDetailView: View {
                     HStack {
                         Spacer(minLength: 0)
                         VStack(spacing: 6) {
-                            Image("DefaultAvatar")
-                                .resizable()
-                                .frame(width: 60, height: 60)
-                                .clipShape(Circle())
-                                .padding(.horizontal, 15)
+                            if vm.owner.avatar != nil && imageRepo.imageDict[vm.owner.avatar!] != nil {
+                                Image(uiImage: imageRepo.imageDict[vm.owner.avatar!]!)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 60, height: 60)
+                                    .clipShape(Circle())
+                                    .padding(.horizontal, 15)
+                            } else {
+                                Image("DefaultAvatar")
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 60, height: 60)
+                                    .clipShape(Circle())
+                                    .padding(.horizontal, 15)
+                            }
                             Text("\(vm.owner.username)")
                             if let rating = vm.owner.rating {
                                 Text("Rating: \(Int(rating))")
@@ -80,11 +91,21 @@ struct GameDetailView: View {
                         Spacer(minLength: 0)
                         VStack(spacing: 6) {
                             if let oppo = vm.opponent {
-                                Image("DefaultAvatar")
-                                    .resizable()
-                                    .frame(width: 60, height: 60)
-                                    .clipShape(Circle())
-                                    .padding(.horizontal, 15)
+                                if oppo.avatar != nil && imageRepo.imageDict[oppo.avatar!] != nil {
+                                    Image(uiImage: imageRepo.imageDict[oppo.avatar!]!)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 60, height: 60)
+                                        .clipShape(Circle())
+                                        .padding(.horizontal, 15)
+                                } else {
+                                    Image("DefaultAvatar")
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 60, height: 60)
+                                        .clipShape(Circle())
+                                        .padding(.horizontal, 15)
+                                }
                                 Text("\(oppo.username)")
                                 if let rating = oppo.rating {
                                     Text("Rating: \(Int(rating))")
@@ -133,6 +154,9 @@ struct GameDetailView: View {
             Spacer(minLength: 0)
         }
         .navigationTitle("Game Detail")
+        .onAppear {
+            vm.update()
+        }
         .onDisappear {
             vm.gameRepo.refresh()
         }

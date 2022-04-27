@@ -14,8 +14,6 @@ struct ProfileView: View {
     
     @State private var toggleOn = true
     @State private var showImagePicker = false
-    @State private var selectedImage = UIImage()
-    @State private var isSet = false
     
     var body: some View {
         VStack(spacing: 0) {
@@ -40,8 +38,8 @@ struct ProfileView: View {
                             Button {
                                 showImagePicker.toggle()
                             } label: {
-                                if isSet {
-                                    Image(uiImage: selectedImage)
+                                if userViewModel.avatarReady {
+                                    Image(uiImage: userViewModel.avatar)
                                         .resizable()
                                         .scaledToFill()
                                         .frame(width: 80, height: 80)
@@ -57,7 +55,7 @@ struct ProfileView: View {
                                 }
                             }
                             .popover(isPresented: $showImagePicker) {
-                                ImagePicker(selectedImage: $selectedImage, didSet: $isSet)
+                                ImagePicker(selectedImage: $userViewModel.avatar, didSet: $userViewModel.avatarReady)
                             }
                             
                             
@@ -221,6 +219,7 @@ struct ProfileView: View {
                                 
                                 Button {
                                     userViewModel.currUser = nil
+                                    userViewModel.avatarReady = false
                                 } label: {
                                     HStack {
                                         

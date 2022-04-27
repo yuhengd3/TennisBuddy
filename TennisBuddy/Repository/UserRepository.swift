@@ -34,6 +34,9 @@ class UserRepository: ObservableObject {
                     let description: String? = document.data()["description"] as? String
                     let user = User(username: username, uid: uid, avatar: avatar, rating: rating, numGames: numGames, description: description, documentId: document.documentID)
                     updatedUsers.append(user)
+                    if avatar != nil {
+                        ImageRepository.instance.addImageToDict(avatar!)
+                    }
                 }
                 self.users = updatedUsers
             }

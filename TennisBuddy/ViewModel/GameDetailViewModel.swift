@@ -57,6 +57,15 @@ class GameDetailViewModel: ObservableObject {
         }
     }
     
+    func update() {
+        self.owner = userRepo.fetchUser(uid: game.owner)!
+        if let oppoId = game.opponent {
+            self.opponent = userRepo.fetchUser(uid: oppoId)!
+        } else {
+            self.opponent = nil
+        }
+    }
+    
     deinit {
         // detach a listener
         listener?.remove()

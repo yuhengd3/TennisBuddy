@@ -23,6 +23,9 @@ class LoginViewModel: ObservableObject {
             } else {
                 let uid = Auth.auth().currentUser!.uid
                 self.userViewModel.currUser = self.userRepo.fetchUser(uid: uid)!
+                if let avatar = self.userViewModel.currUser?.avatar {
+                    ImageRepository.instance.fetchCurrUserImage(avatar)
+                }
             }
         }
     }

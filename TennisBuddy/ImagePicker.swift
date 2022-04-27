@@ -75,6 +75,8 @@ struct ImagePicker: UIViewControllerRepresentable {
             }
             
             UserRepository.instance.updateImageUrl(uniqueStr)
+            UserRepository.instance.refresh()
+            GameRepository.instance.refresh()
             
         }
     }
