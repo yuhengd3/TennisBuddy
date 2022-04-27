@@ -113,6 +113,10 @@ struct GameView: View {
             .navigationBarHidden(true)
             .navigationBarTitleDisplayMode(.inline)
         }
+        .onAppear() {
+            GameRepository.instance.refresh()
+            UserRepository.instance.refresh()
+        }
     }
 }
 
