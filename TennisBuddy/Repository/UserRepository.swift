@@ -41,7 +41,13 @@ class UserRepository: ObservableObject {
                 }
                 self.users = updatedUsers
                 self.sortedUsers = updatedUsers.sorted(by: {
-                    $0.rating! > $1.rating! || $0.numGames > $1.numGames
+                    if $0.rating! > $1.rating! {
+                        return true
+                    } else if $0.rating! < $1.rating! {
+                        return false
+                    } else {
+                        return $0.numGames >= $1.numGames
+                    }
                 })
             }
         }

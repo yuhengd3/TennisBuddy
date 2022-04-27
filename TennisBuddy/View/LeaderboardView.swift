@@ -17,7 +17,13 @@ struct LeaderboardView: View {
                 .padding()
         } else {
             let sortedUsers = userRepo.users.sorted {
-                $0.rating! > $1.rating! || $0.numGames > $1.numGames
+                if $0.rating! > $1.rating! {
+                    return true
+                } else if $0.rating! < $1.rating! {
+                    return false
+                } else {
+                    return $0.numGames >= $1.numGames
+                }
             }
             VStack(spacing: 0) {
                 ZStack {

@@ -253,6 +253,21 @@ struct ProfileView: View {
                         }
                     }
                 }
+                .onAppear {
+                    UserRepository.instance.db.collection("users")
+                        .document(userViewModel.currUser!.documentId!).getDocument {(document, error) in
+                            if let document = document {
+                                let username: String = document.data()!["username"] as! String
+                                let uid: String = document.data()!["uid"] as! String
+                                let avatar: String? = document.data()?["avatar"] as? String
+                                let rating: Double? = document.data()?["rating"] as? Double
+                                let numGames = document.data()?["numGames"] as? Int ?? 0
+                                let description: String? = document.data()?["description"] as? String
+                                let user = User(username: username, uid: uid, avatar: avatar, rating: rating, numGames: numGames, description: description, documentId: document.documentID)
+                                userViewModel.currUser = user
+                            }
+                    }
+                }
                 
             } else {
                 AuthView()

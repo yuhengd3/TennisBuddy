@@ -71,14 +71,117 @@ class GameDetailViewModel: ObservableObject {
         listener?.remove()
     }
     
-    func showJoinButton() -> Bool {
-        globalUserViewModel.currUser != nil && self.game.opponent == nil && game.owner != globalUserViewModel.currUser!.uid
-    }
-    
     func joinGame() {
         if opponent == nil {
             self.gameRepo.joinGame(game: self.game, oppo: globalUserViewModel.currUser!.uid)
         }
     }
+    
+    var showJoinButton: Bool {
+        globalUserViewModel.currUser != nil && self.game.opponent == nil && game.owner != globalUserViewModel.currUser!.uid
+    }
+
+    
+    var showPasscode: Bool {
+        if Date.now < game.date {
+            return false
+        }
+        
+        if game.status != .toStart || opponent == nil {
+            return false
+        }
+        
+        guard let currUserId = globalUserViewModel.currUser?.uid else {
+            return false
+        }
+        
+        return currUserId == owner.uid
+    }
+    
+    var passcode: String {
+        let docId = game.documentId!.uppercased()
+        let idx = docId.index(docId.endIndex, offsetBy: -4)
+        return String(docId[idx...])
+    }
+    
+    var showSubmitResult: Bool {
+        if Date.now < game.date {
+            return false
+        }
+        
+        if game.status != .toStart || opponent == nil {
+            return false
+        }
+        
+        guard let currUserId = globalUserViewModel.currUser?.uid else {
+            return false
+        }
+        
+        return currUserId == opponent!.uid
+    }
+    
+    var showStatus: Bool {
+        if Date.now < game.date {
+            return false
+        }
+        
+        if opponent == nil {
+            return false
+        }
+        
+        return true
+    }
+    
+    func getStatusString() -> String {
+        switch game.status {
+        case .ownerWin:
+            return "\(owner.username) won!"
+        case .oppoWin:
+            return "\(opponent!.username) won!"
+        default:
+            return "Missing Results"
+        }
+    }
+    func updateGameStatus(_ status: Game.GameStatus) {
+        let Sa: Double = status == .ownerWin ? 1 : 0
+        let Sb: Double = status == .ownerWin ? 0 : 1
+        
+        let Ra: Double = owner.rating!
+        let Rb = opponent!.rating!
+        
+        let K = 30.0
+        // Elo rating algorithm
+        let Ea = 1.0 / (1 + pow(10.0, (Rb - Ra) / 400.0))
+        let Eb = 1.0 / (1 + pow(10.0, (Ra - Rb) / 400.0))
+        
+        let Ra_ = Ra + K * (Sa - Ea)
+        let Rb_ = Rb + K * (Sb - Eb)
+        
+        game.status = status
+        
+        owner.numGames += 1
+        owner.rating! = Ra_
+        opponent!.numGames += 1
+        opponent!.rating! = Rb_
+        self.owner = owner
+        self.opponent = opponent
+        
+        gameRepo.db.collection("games").document(game.documentId!).setData(["status": status.rawValue], merge: true) { err in
+            if let err = err {
+                print("Error updating game (add opponent): \(err)")
+            } else {
+                print("Updated Game Status: \(self.game.documentId!)")
+                // self.refresh()
+            }
+        }
+        
+        
+        userRepo.db.collection("users").document(owner.documentId!).setData(["numGames": owner.numGames, "rating": Ra_], merge: true)
+        userRepo.db.collection("users").document(opponent!.documentId!).setData(["numGames": opponent!.numGames, "rating": Rb_], merge: true)
+        
+        
+    }
+    
+    
     
 }

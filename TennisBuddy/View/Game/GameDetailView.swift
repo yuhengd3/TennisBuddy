@@ -13,6 +13,10 @@ struct GameDetailView: View {
     @ObservedObject var vm : GameDetailViewModel
     @ObservedObject var imageRepo = ImageRepository.instance
     
+    @State private var enteredPasscode = ""
+    @State private var selectedGameStatus = Game.GameStatus.ownerWin
+    @State private var showingAlert = false
+    
     init(game: Game) {
         vm = GameDetailViewModel(game: game)
         dateFormatter.dateStyle = .medium
@@ -132,7 +136,7 @@ struct GameDetailView: View {
                 }
                 .padding(26)
                 
-                if vm.showJoinButton() {
+                if vm.showJoinButton {
                     Button {
                         vm.joinGame()
                     } label: {
@@ -146,6 +150,63 @@ struct GameDetailView: View {
                         .font(Font.headline.smallCaps())
                         .background(Color("PrincetonOrange"))
                     }
+                } else if vm.showPasscode {
+                    HStack {
+                        Spacer()
+                        Text("Passcode: \(vm.passcode)")
+                        Spacer()
+                    }
+                    .foregroundColor(.white)
+                    .padding()
+                    .font(Font.headline.smallCaps())
+                    .background(Color("PrincetonOrange"))
+                } else if vm.showSubmitResult {
+                    VStack {
+                        TextField("Passcode: ", text: $enteredPasscode)
+                            .disableAutocorrection(true)
+                            .textInputAutocapitalization(.characters)
+                            .padding()
+                        
+                        Text("Who won?")
+                        
+                        Picker("Who won?", selection: $selectedGameStatus) {
+                            Text(vm.owner.username).tag(Game.GameStatus.ownerWin)
+                            Text(vm.opponent!.username).tag(Game.GameStatus.oppoWin)
+                        }
+                        
+                        Button {
+                            // vm.submit result
+                            if enteredPasscode != vm.passcode {
+                                showingAlert = true
+                            } else {
+                                vm.updateGameStatus(selectedGameStatus)
+                            }
+                        } label: {
+                            HStack {
+                                Spacer()
+                                Text("Submit Result")
+                                Spacer()
+                            }
+                            .foregroundColor(.white)
+                            .padding()
+                            .font(Font.headline.smallCaps())
+                            .background(Color("PrincetonOrange"))
+                        }
+                        .alert(isPresented: $showingAlert) {
+                            Alert(title: Text("Error"), message: Text("Passcode incorrect"), dismissButton: .default(Text("Okay")))
+                        }
+                    }
+                    
+                } else if vm.showStatus {
+                    HStack {
+                        Spacer()
+                        Text("\(vm.getStatusString())")
+                        Spacer()
+                    }
+                    .foregroundColor(.white)
+                    .padding()
+                    .font(Font.headline)
+                    .background(Color("PrincetonOrange"))
                 }
                 
             }
