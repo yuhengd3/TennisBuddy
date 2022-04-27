@@ -7,9 +7,11 @@
 
 import SwiftUI
 import Firebase
+import FirebaseStorage
 
 var globalUserViewModel = UserViewModel()
 let USERS = "users"
+let globalStorage = Storage.storage()
 
 @main
 struct TennisBuddyApp: App {

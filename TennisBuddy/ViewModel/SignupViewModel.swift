@@ -50,17 +50,25 @@ class SignupViewModel: ObservableObject {
                         self.showingAlert = true
                         return
                     }
-                    self.db.collection(USERS).addDocument(data: [
+                    var ref: DocumentReference? = nil
+                    ref = self.db.collection(USERS).addDocument(data: [
                         "username": username,
                         "uid": result!.user.uid,
                         "rating": 1000.0,
                         "numGames": 0,
                         "email": email
-                    ])
+                    ]) { err in
+                        if let err = err {
+                            print("Error writing document: \(err)")
+                        } else {
+                            print("Document successfully written!")
+                            let user = User(username: username, uid: result!.user.uid, avatar: nil, rating: 1000.0, numGames: 0, description: nil, documentId: ref!.documentID)
+                            self.userRepo.refresh()
+                            self.userViewModel.currUser = user
+                        }
+                    }
                     
-                    let user = User(username: username, uid: result!.user.uid, avatar: nil, rating: 1000.0, numGames: 0, description: nil)
-                    self.userRepo.refresh()
-                    self.userViewModel.currUser = user
+                    
                 }
             }
         }

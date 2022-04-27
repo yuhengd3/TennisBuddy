@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct ProfileView: View {
     
     @ObservedObject var userViewModel = globalUserViewModel
     
     @State private var toggleOn = true
+    @State private var showImagePicker = false
+    @State private var selectedImage = UIImage()
+    @State private var isSet = false
     
     var body: some View {
         VStack(spacing: 0) {
@@ -33,11 +37,29 @@ struct ProfileView: View {
                             Spacer()
                                 .frame(height: 14)
                             
-                            Image("DefaultAvatar")
-                                .resizable()
-                                .frame(width: 80, height: 80)
-                                .clipShape(Circle())
-                                .padding(.horizontal, 15)
+                            Button {
+                                showImagePicker.toggle()
+                            } label: {
+                                if isSet {
+                                    Image(uiImage: selectedImage)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 80, height: 80)
+                                        .clipShape(Circle())
+                                        .padding(.horizontal, 15)
+                                } else {
+                                    Image("DefaultAvatar")
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 80, height: 80)
+                                        .clipShape(Circle())
+                                        .padding(.horizontal, 15)
+                                }
+                            }
+                            .popover(isPresented: $showImagePicker) {
+                                ImagePicker(selectedImage: $selectedImage, didSet: $isSet)
+                            }
+                            
                             
                             Spacer()
                                 .frame(height: 14)

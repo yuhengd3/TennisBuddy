@@ -47,4 +47,8 @@ class UserRepository: ObservableObject {
         }
     }
     
+    func updateImageUrl(_ url: String) {
+        db.collection("users").document(globalUserViewModel.currUser!.documentId!).setData([ "avatar": url ], merge: true)
+    }
+    
 }
