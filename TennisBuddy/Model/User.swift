@@ -14,4 +14,6 @@ struct User {
     var rating: Double?
     var numGames = 0
     var description: String?
+    
+    var documentId: String?
 }

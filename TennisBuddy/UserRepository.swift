@@ -25,16 +25,17 @@ class UserRepository: ObservableObject {
             } else {
                 var updatedUsers = [User]()
                 for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
+                    // print("\(document.documentID) => \(document.data())")
                     let username: String = document.data()["username"] as! String
-                    let uid: String = document.documentID
+                    let uid: String = document.data()["uid"] as! String
                     let avatar: String? = document.data()["avatar"] as? String
                     let rating: Double? = document.data()["rating"] as? Double
                     let numGames = document.data()["numGames"] as? Int ?? 0
                     let description: String? = document.data()["description"] as? String
-                    let user = User(username: username, uid: uid, avatar: avatar, rating: rating, numGames: numGames, description: description)
+                    let user = User(username: username, uid: uid, avatar: avatar, rating: rating, numGames: numGames, description: description, documentId: document.documentID)
                     updatedUsers.append(user)
                 }
+                self.users = updatedUsers
             }
         }
     }

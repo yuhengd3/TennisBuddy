@@ -15,6 +15,7 @@ class SignupViewModel: ObservableObject {
     @Published var alertContent: String = ""
     var userViewModel: UserViewModel = globalUserViewModel
     let db = Firestore.firestore()
+    let userRepo = UserRepository.instance
     
     func signup(email: String, password: String, username: String) {
         
@@ -50,11 +51,16 @@ class SignupViewModel: ObservableObject {
                         return
                     }
                     self.db.collection(USERS).addDocument(data: [
-                        "uid": result!.user.uid,
                         "username": username,
-                        "email": email,
+                        "uid": result!.user.uid,
+                        "rating": 1000.0,
+                        "numGames": 0,
+                        "email": email
                     ])
-                    self.userViewModel.updateUID(result!.user.uid)
+                    
+                    let user = User(username: username, uid: result!.user.uid, avatar: nil, rating: 1000.0, numGames: 0, description: nil)
+                    self.userRepo.refresh()
+                    self.userViewModel.currUser = user
                 }
             }
         }

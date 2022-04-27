@@ -40,6 +40,19 @@ struct SignupView: View {
                     .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 5)
                     .shadow(color: .black.opacity(0.08), radius: 5, x: 0, y: -5)
                 
+                Text("Username")
+                    .font(.caption)
+                    .fontWeight(.bold)
+                    .foregroundColor(.gray)
+                
+                TextField("username", text: $username)
+                    .disableAutocorrection(true)
+                    .textInputAutocapitalization(.never)
+                    .padding()
+                    .background(.white)
+                    .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 5)
+                    .shadow(color: .black.opacity(0.08), radius: 5, x: 0, y: -5)
+                
                 Text("Password")
                     .font(.caption)
                     .fontWeight(.bold)
@@ -53,18 +66,6 @@ struct SignupView: View {
                     .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 5)
                     .shadow(color: .black.opacity(0.08), radius: 5, x: 0, y: -5)
                 
-                Text("Username")
-                    .font(.caption)
-                    .fontWeight(.bold)
-                    .foregroundColor(.gray)
-                
-                TextField("username", text: $username)
-                    .disableAutocorrection(true)
-                    .textInputAutocapitalization(.never)
-                    .padding()
-                    .background(.white)
-                    .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 5)
-                    .shadow(color: .black.opacity(0.08), radius: 5, x: 0, y: -5)
                 
             }
             .padding(.horizontal, 15)

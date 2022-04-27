@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct GameListRowView: View {
+    let userRepo = UserRepository.instance
     var game: Game
     let dateFormatter = DateFormatter()
     
@@ -25,7 +26,7 @@ struct GameListRowView: View {
                     .frame(width: 40, height: 40)
                     .clipShape(Circle())
                     .padding(.horizontal)
-                Text(game.owner.username)
+                Text(getOwnername(of: game))
                     .font(.system(size: 14))
             }
             
@@ -34,7 +35,7 @@ struct GameListRowView: View {
                 Text(dateFormatter.string(from: game.date))
                 Spacer()
                 if let oppo = game.opponent {
-                    Text("V.S. \(oppo.username)")
+                    Text("V.S. \(oppo)")
                 } else {
                     Text("Needs Opponent")
                 }
@@ -46,10 +47,9 @@ struct GameListRowView: View {
     }
 }
 
-struct GameListRowView_Previews: PreviewProvider {
-    static var previews: some View {
-        let user1 = User(username: "Ben4234", uid: "random_uid", avatar: nil)
-        let game = Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1)
-        return GameListRowView(game: game).previewLayout(.fixed(width: 300, height: 70))
-    }
-}
+//struct GameListRowView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let game = Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: "userid")
+//        return GameListRowView(game: game).previewLayout(.fixed(width: 300, height: 70))
+//    }
+//}

@@ -16,6 +16,8 @@ struct AddGameView: View {
     @State private var numSets = 3
     @State private var description = ""
     
+    let gameRepo = GameRepository.instance
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
@@ -38,7 +40,8 @@ struct AddGameView: View {
                     Spacer()
                     Button(action: {
                         showSheet = false
-                        
+                        let game = Game(date: date, location: location, description: description, owner: globalUserViewModel.currUser!.uid, opponent: nil, numSets: numSets, status: .toStart)
+                        gameRepo.createGame(game)
                         // TODO: Connect to Firebase
                     }, label: {
                         Image(systemName: "checkmark")

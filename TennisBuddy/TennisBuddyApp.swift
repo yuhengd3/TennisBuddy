@@ -24,3 +24,12 @@ struct TennisBuddyApp: App {
         }
     }
 }
+
+// helpers
+func getOwnername(of: Game) -> String {
+    UserRepository.instance.fetchUser(uid: of.owner)!.username
+}
+
+func getOwnerAvatar(of: Game) -> String? {
+    UserRepository.instance.fetchUser(uid: of.owner)?.avatar
+}

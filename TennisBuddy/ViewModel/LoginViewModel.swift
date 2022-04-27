@@ -11,7 +11,8 @@ import FirebaseAuth
 class LoginViewModel: ObservableObject {
     @Published var showingAlert = false
     @Published var alertContent: String = ""
-    var userViewModel: UserViewModel = globalUserViewModel
+    let userViewModel: UserViewModel = globalUserViewModel
+    let userRepo = UserRepository.instance
     
     func login(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
@@ -21,7 +22,7 @@ class LoginViewModel: ObservableObject {
                 print("login failed")
             } else {
                 let uid = Auth.auth().currentUser!.uid
-                self.userViewModel.updateUID(uid)
+                self.userViewModel.currUser = self.userRepo.fetchUser(uid: uid)!
             }
         }
     }

@@ -13,27 +13,30 @@ let user = User(username: "John Doe", uid: "qwerqewrwq", avatar: nil, rating: 12
 let user1 = User(username: "Ben4234", uid: "random_uid", avatar: nil, rating: 432)
 let user2 = User(username: "Jack1", uid: "random", avatar: nil, rating: 4020)
 
-let fgames: [Game] = [
-    Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1),
-    Game(date: Date(timeIntervalSinceNow: 20), location: "Tao's Tennis Center", description: "Fun!", owner: user1, opponent: user2),
-    Game(date: Date(timeIntervalSinceNow: 100), location: "Tao's Tennis Center", description: disc, owner: user1),
-    Game(date: Date(timeIntervalSinceNow: 300), location: "Tao's Tennis Center", description: disc, owner: user1, opponent: user2),
-    Game(date: Date(timeIntervalSinceNow: 400), location: "Tao's Tennis Center", description: "Fun!", owner: user1),
-    Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1, opponent: user2),
-    Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1),
-    Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1, opponent: user2)
-]
+let fgames = [Game]()
+let finishedGames = [Game]()
 
-let finishedGames: [Game] = [
-    Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user, opponent: user1, status: .ownerWin),
-    Game(date: Date(timeIntervalSinceNow: 20), location: "Tao's Tennis Center", description: "Fun!", owner: user, opponent: user2, status: .oppoWin),
-    Game(date: Date(timeIntervalSinceNow: 100), location: "Tao's Tennis Center", description: disc, owner: user, opponent: user2, status: .ownerWin),
-    Game(date: Date(timeIntervalSinceNow: 300), location: "Tao's Tennis Center", description: disc, owner: user, opponent: user2),
-    Game(date: Date(timeIntervalSinceNow: 400), location: "Tao's Tennis Center", description: "Fun!", owner: user, opponent: user1, status: .oppoWin),
-    Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user, opponent: user2),
-    Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user, opponent: user2, status: .oppoWin),
-    Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user, opponent: user2)
-]
+//let fgames: [Game] = [
+//    Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1),
+//    Game(date: Date(timeIntervalSinceNow: 20), location: "Tao's Tennis Center", description: "Fun!", owner: user1, opponent: user2),
+//    Game(date: Date(timeIntervalSinceNow: 100), location: "Tao's Tennis Center", description: disc, owner: user1),
+//    Game(date: Date(timeIntervalSinceNow: 300), location: "Tao's Tennis Center", description: disc, owner: user1, opponent: user2),
+//    Game(date: Date(timeIntervalSinceNow: 400), location: "Tao's Tennis Center", description: "Fun!", owner: user1),
+//    Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1, opponent: user2),
+//    Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1),
+//    Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1, opponent: user2)
+//]
+//
+//let finishedGames: [Game] = [
+//    Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user, opponent: user1, status: .ownerWin),
+//    Game(date: Date(timeIntervalSinceNow: 20), location: "Tao's Tennis Center", description: "Fun!", owner: user, opponent: user2, status: .oppoWin),
+//    Game(date: Date(timeIntervalSinceNow: 100), location: "Tao's Tennis Center", description: disc, owner: user, opponent: user2, status: .ownerWin),
+//    Game(date: Date(timeIntervalSinceNow: 300), location: "Tao's Tennis Center", description: disc, owner: user, opponent: user2),
+//    Game(date: Date(timeIntervalSinceNow: 400), location: "Tao's Tennis Center", description: "Fun!", owner: user, opponent: user1, status: .oppoWin),
+//    Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user, opponent: user2),
+//    Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user, opponent: user2, status: .oppoWin),
+//    Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user, opponent: user2)
+//]
 
 struct ContentView: View {
     @State private var tabSelected = 0
@@ -48,7 +51,7 @@ struct ContentView: View {
     var body: some View {
         
         TabView(selection: $tabSelected) {
-            GameView(games: fgames)
+            GameView()
                 .tabItem {
                     Image(systemName: "calendar.circle.fill")
                     Text("Game")
@@ -78,8 +81,10 @@ struct ContentView: View {
                 .tag(3)
         }
         .onAppear {
-            print("Before appear")
-            sleep(10)
+            let userRepo = UserRepository.instance
+            userRepo.refresh()
+            let gameRepo = GameRepository.instance
+            gameRepo.refresh()
         }
     }
 }

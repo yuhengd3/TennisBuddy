@@ -8,11 +8,11 @@
 import SwiftUI
 
 class UserViewModel: ObservableObject {
-    @Published private(set) var model = AuthModel()
+    @Published var currUser: User?
     
     // MARK: - Intent(s)
     
-    func updateUID(_ uid: String) {
-        model.uid = uid;
-    }
+//    func updateUID(_ uid: String) {
+//        model.uid = uid;
+//    }
 }

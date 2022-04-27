@@ -8,20 +8,12 @@
 import SwiftUI
 
 struct GameView: View {
-    var games: [Game]
-    let gameViewModel = GameViewModel()
+    
+    @ObservedObject var currUserVM = globalUserViewModel
+    @ObservedObject var gameViewModel = GameViewModel()
+    
     @State private var showingAddGame = false
     @State private var listSelected = 0
-    
-    init(games: [Game]) {
-        self.games = games
-        //Use this if NavigationBarTitle is with Large Font
-        //UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "SF Mono", size: 20)!]
-        // UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont.systemFont(ofSize: 20)]
-
-        //Use this if NavigationBarTitle is with displayMode = .inline
-        //UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "Georgia-Bold", size: 20)!]
-    }
     
     var body: some View {
         NavigationView {
@@ -61,7 +53,7 @@ struct GameView: View {
                         
                         
                         List {
-                            ForEach(listSelected == 0 ? games[..<5] : games[5...]) { game in
+                            ForEach(listSelected == 0 ? gameViewModel.gameRepo.futureGames : gameViewModel.gameRepo.fetchGamesByUserId(uid: globalUserViewModel.currUser!.uid)) { game in
                                 NavigationLink {
                                     GameDetailView(game: game)
                                 } label: {
@@ -69,52 +61,51 @@ struct GameView: View {
                                         .mask(Color.black.opacity(game.opponent != nil ? 0.4 : 1))
                                 }
                                 .navigationTitle("")
-                                .toolbar {
-                                    ToolbarItem(placement: .principal) {
-                                        Text("Hello")
-                                    }
-                                }
                             }
                         }
                         .padding(.top, 20)
                         
-                        VStack {
-                            Picker("Favorite Color", selection: $listSelected) {
-                                Text("Upcoming Games").tag(0)
-                                Text("My Games").tag(1)
+                        if currUserVM.currUser != nil {
+                            VStack {
+                                Picker("List Selection", selection: $listSelected) {
+                                    Text("Upcoming Games").tag(0)
+                                    Text("My Games").tag(1)
+                                }
+                                .pickerStyle(.segmented)
+                                .background(Color("ListBackground")) // Why does this make the segmented control opaque?
+                                .opacity(1)
+                                .padding(6)
+                                
+                                Spacer()
                             }
-                            .pickerStyle(.segmented)
-                            .background(Color("ListBackground")) // Why does this make the segmented control opaque?
-                            .opacity(1)
-                            .padding(6)
-                            
-                            Spacer()
                         }
+                        
                         
                     }
                     
                 }
                 .background(Color("ListBackground"))
                 
-                // Floating Button
-                VStack {
-                    Spacer()
-                    
-                    HStack {
+                if currUserVM.currUser != nil {
+                    // Floating Button
+                    VStack {
                         Spacer()
                         
-                        Button(action: {
-                            showingAddGame.toggle()
-                        }, label: {
-                            Image(systemName: "plus.circle.fill")
-                                .foregroundColor(Color("PrincetonOrange"))
-                                .font(.system(size: 56))
-                                .padding()
-                        })
-                            .sheet(isPresented: $showingAddGame) {
-                                AddGameView(showSheet: $showingAddGame)
-                            }
+                        HStack {
+                            Spacer()
                             
+                            Button(action: {
+                                showingAddGame.toggle()
+                            }, label: {
+                                Image(systemName: "plus.circle.fill")
+                                    .foregroundColor(Color("PrincetonOrange"))
+                                    .font(.system(size: 56))
+                                    .padding()
+                            })
+                                .sheet(isPresented: $showingAddGame) {
+                                    AddGameView(showSheet: $showingAddGame)
+                                }
+                        }
                     }
                 }
             }
@@ -127,23 +118,23 @@ struct GameView: View {
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
-        let user1 = User(username: "Ben4234", uid: "random_uid", avatar: nil)
-        let user2 = User(username: "Jack1", uid: "random", avatar: nil, rating: 1000)
-        let games: [Game] = [
-            Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1),
-            Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1, opponent: user2),
-            Game(date: Date(timeIntervalSinceNow: 100), location: "Tao's Tennis Center", description: disc, owner: user1),
-            Game(date: Date(timeIntervalSinceNow: 300), location: "Tao's Tennis Center", description: disc, owner: user1, opponent: user2),
-            Game(date: Date(timeIntervalSinceNow: 400), location: "Tao's Tennis Center", description: "Fun!", owner: user1),
-            Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1, opponent: user2),
-            Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1),
-            Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1, opponent: user2),
-            Game(date: Date(timeIntervalSinceNow: 400), location: "Tao's Tennis Center", description: "Fun!", owner: user1),
-            Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1, opponent: user2),
-            Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1),
-            Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1, opponent: user2)
-        ]
-        return GameView(games: games)
+        // let user1 = User(username: "Ben4234", uid: "random_uid", avatar: nil)
+        // let user2 = User(username: "Jack1", uid: "random", avatar: nil, rating: 1000)
+//        let games: [Game] = [
+//            Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1),
+//            Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1, opponent: user2),
+//            Game(date: Date(timeIntervalSinceNow: 100), location: "Tao's Tennis Center", description: disc, owner: user1),
+//            Game(date: Date(timeIntervalSinceNow: 300), location: "Tao's Tennis Center", description: disc, owner: user1, opponent: user2),
+//            Game(date: Date(timeIntervalSinceNow: 400), location: "Tao's Tennis Center", description: "Fun!", owner: user1),
+//            Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1, opponent: user2),
+//            Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1),
+//            Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1, opponent: user2),
+//            Game(date: Date(timeIntervalSinceNow: 400), location: "Tao's Tennis Center", description: "Fun!", owner: user1),
+//            Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1, opponent: user2),
+//            Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1),
+//            Game(date: Date(timeIntervalSinceNow: 10), location: "Tao's Tennis Center", description: "Fun!", owner: user1, opponent: user2)
+//        ]
+        return GameView()
             .previewInterfaceOrientation(.portrait)
     }
 }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
+    
     @ObservedObject var userViewModel = globalUserViewModel
     
     @State private var toggleOn = true
@@ -25,7 +26,7 @@ struct ProfileView: View {
                     .foregroundColor(.white)
             }
             
-            if userViewModel.model.uid == nil {
+            if let user = userViewModel.currUser {
                 NavigationView {
                     VStack {
                         VStack {
@@ -64,7 +65,7 @@ struct ProfileView: View {
                             
                             HStack {
                                 VStack(spacing:3) {
-                                    Text("345")
+                                    Text("\(Int(user.rating ?? 0))")
                                         .font(.system(size: 22))
                                         .fontWeight(.bold)
                                     
@@ -75,7 +76,7 @@ struct ProfileView: View {
                                 .padding(.horizontal, 40)
                                 
                                 VStack(spacing:3) {
-                                    Text("34")
+                                    Text("\(user.numGames)")
                                         .font(.system(size: 22))
                                         .fontWeight(.bold)
                                     

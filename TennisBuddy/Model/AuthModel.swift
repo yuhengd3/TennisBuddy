@@ -8,6 +8,5 @@
 import Foundation
 
 struct AuthModel {
-    var uid: String?
-    var email: String?
+    var currUser : User? = nil
 }

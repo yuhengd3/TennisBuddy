@@ -10,11 +10,20 @@ import SwiftUI
 struct GameDetailView: View {
     var game: Game
     let dateFormatter = DateFormatter()
+    let userRepo = UserRepository.instance
+    let owner: User
+    let opponent: User?
     
     init(game: Game) {
         self.game = game
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
+        owner = userRepo.fetchUser(uid: game.owner)!
+        if let o = game.opponent {
+            opponent = userRepo.fetchUser(uid: o)
+        } else {
+            opponent = nil
+        }
     }
     
     var body: some View {
@@ -37,7 +46,6 @@ struct GameDetailView: View {
                     Text(game.description)
                         .padding(.bottom, 50)
                     
-                    let owner = game.owner
                     HStack {
                         Spacer(minLength: 0)
                         VStack(spacing: 6) {
@@ -79,7 +87,7 @@ struct GameDetailView: View {
                         .frame(height: 200)
                         Spacer(minLength: 0)
                         VStack(spacing: 6) {
-                            if let oppo = game.opponent {
+                            if let oppo = opponent {
                                 Image("DefaultAvatar")
                                     .resizable()
                                     .frame(width: 60, height: 60)
@@ -136,12 +144,11 @@ struct GameDetailView: View {
     }
 }
 
-struct GameDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        let user = User(username: "yuheng", uid: "134A8B23", avatar: nil)
-        let user2 = User(username: "yuheng", uid: "134A8B23", avatar: nil, rating: 300)
-        let disc = "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga."
-        let game = Game(date: Date.now, location: "WashU", description: disc, owner: user, opponent: user2)
-        GameDetailView(game: game)
-    }
-}
+//struct GameDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        // let user = User(username: "yuheng", uid: "134A8B23", avatar: nil)
+//        // let user2 = User(username: "yuheng", uid: "134A8B23", avatar: nil, rating: 300)
+//        let game = Game(date: Date.now, location: "WashU", description: disc, owner: "user", opponent: "user2")
+//        GameDetailView(game: game)
+//    }
+//}

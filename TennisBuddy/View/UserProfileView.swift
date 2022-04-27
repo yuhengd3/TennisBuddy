@@ -70,7 +70,7 @@ struct UserProfileView: View {
             
             List {
                 ForEach(games) { game in
-                    GameItemView(user: user, game: game)
+                    ProfileGameItemView(user: user, game: game)
                 }
             }
             .background(Color.gray)
@@ -79,73 +79,6 @@ struct UserProfileView: View {
             Spacer(minLength: 0)
         }
         .navigationTitle("User Profile")
-    }
-}
-
-struct GameItemView : View {
-    var user: User
-    var game: Game
-    let dateFormatter = DateFormatter()
-    
-    var body: some View {
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        let oppo = user.uid != game.owner.uid ? game.owner : game.opponent!
-        var status = -1
-        switch game.status {
-        case .ownerWin:
-            status = game.owner.uid == user.uid ? 0 : 1
-        case .oppoWin:
-            status = game.owner.uid == user.uid ? 1 : 0
-        default:
-            status = 2
-        }
-        
-        return HStack {
-            Spacer()
-            VStack {
-                Spacer()
-                Text(dateFormatter.string(from: game.date))
-                Spacer()
-                switch status {
-                case 0:
-                    Text("Won")
-                        .padding(.horizontal, 10)
-                        .foregroundColor(.white)
-                        .background(Color.green)
-                        .cornerRadius(10)
-                case 1:
-                    Text("Lost")
-                        .padding(.horizontal, 10)
-                        .foregroundColor(.white)
-                        .background(Color.red)
-                        .cornerRadius(10)
-                default:
-                    Text("Missing")
-                        .padding(.horizontal, 10)
-                        .foregroundColor(.white)
-                        .background(Color.gray)
-                        .cornerRadius(10)
-                }
-                Spacer()
-            }
-            Spacer()
-            
-            Text("V.S.")
-            
-            VStack(spacing: 4) {
-                Image("DefaultAvatar")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 40, height: 40)
-                    .clipShape(Circle())
-                    .padding(.horizontal)
-                Text(oppo.username)
-                    .font(.system(size: 14))
-            }
-            .padding(.trailing, 14)
-        }
-        .frame(height: 70)
     }
 }
 
