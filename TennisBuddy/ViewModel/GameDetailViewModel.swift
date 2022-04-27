@@ -28,7 +28,7 @@ class GameDetailViewModel: ObservableObject {
         
         
         // Firestore realtime updates
-        listener = GameRepository.instance.db.collection("cities").document(game.documentId!).addSnapshotListener { documentSnapshot, error in
+        listener = GameRepository.instance.db.collection("games").document(game.documentId!).addSnapshotListener { documentSnapshot, error in
             guard let document = documentSnapshot else {
                 print("Error fetching document: \(error!)")
                 return

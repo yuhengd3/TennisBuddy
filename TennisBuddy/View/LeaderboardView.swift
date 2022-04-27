@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LeaderboardView: View {
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             ZStack {
                 Rectangle()
                     .foregroundColor(Color("PrincetonOrange"))
@@ -80,7 +80,7 @@ struct UserBlockView: View {
     var img: String
     
     var body: some View {
-        VStack(spacing: 0) {
+        VStack {
             Text("\(idx)")
                 .font(.system(size: 24))
                 .fontWeight(.semibold)

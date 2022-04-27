@@ -80,6 +80,13 @@ class GameRepository: ObservableObject {
     }
     
     func joinGame(game: Game, oppo: String) {
-        db.collection("games").document(game.documentId!).setData(["opponent": oppo], merge: true)
+        db.collection("games").document(game.documentId!).setData(["opponent": oppo], merge: true) { err in
+            if let err = err {
+                print("Error updating game (add opponent): \(err)")
+            } else {
+                print("Opponent added to Game: \(game.documentId!)")
+                // self.refresh()
+            }
+        }
     }
 }

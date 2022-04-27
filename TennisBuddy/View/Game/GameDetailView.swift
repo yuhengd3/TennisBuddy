@@ -133,6 +133,9 @@ struct GameDetailView: View {
             Spacer(minLength: 0)
         }
         .navigationTitle("Game Detail")
+        .onDisappear {
+            vm.gameRepo.refresh()
+        }
     }
 }
 

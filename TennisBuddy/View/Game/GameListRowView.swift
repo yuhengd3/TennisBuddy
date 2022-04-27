@@ -34,7 +34,7 @@ struct GameListRowView: View {
                 Spacer()
                 Text(dateFormatter.string(from: game.date))
                 Spacer()
-                if let oppo = game.opponent {
+                if let oppo = getOpponame(of: game) {
                     Text("V.S. \(oppo)")
                 } else {
                     Text("Needs Opponent")
