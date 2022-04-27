@@ -13,6 +13,7 @@ class UserRepository: ObservableObject {
     static let instance = UserRepository()
     let db = Firestore.firestore()
     @Published var users = [User]()
+    @Published var sortedUsers = [User]()
     
     private init() {
         refresh()
@@ -39,6 +40,9 @@ class UserRepository: ObservableObject {
                     }
                 }
                 self.users = updatedUsers
+                self.sortedUsers = updatedUsers.sorted(by: {
+                    $0.rating! > $1.rating! || $0.numGames > $1.numGames
+                })
             }
         }
     }

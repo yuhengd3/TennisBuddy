@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User {
+struct User: Identifiable {
     var username: String
     var uid: String
     var avatar: String?

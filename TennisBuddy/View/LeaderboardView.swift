@@ -61,8 +61,8 @@ struct LeaderboardView: View {
                     
                     VStack(spacing: 0) {
                         // https://stackoverflow.com/questions/57244713/get-index-in-foreach-in-swiftui
-                        ForEach(3..<sortedUsers.count) { i in
-                            UserRowView(user: sortedUsers[i], idx: i + 1)
+                        ForEach(Array(sortedUsers[3..<sortedUsers.count].enumerated()), id: \.offset) { index, element in
+                            UserRowView(user: element, idx: index + 4)
                         }
                     }
                     
@@ -131,10 +131,19 @@ struct UserRowView: View {
                 .padding(.horizontal, 10)
             
             HStack {
-                Image("DefaultAvatar")
-                    .resizable()
-                    .frame(width: 50, height: 50)
-                    .clipShape(Circle())
+                if user.avatar != nil && ImageRepository.instance.imageDict[user.avatar!] != nil {
+                    Image(uiImage: ImageRepository.instance.imageDict[user.avatar!]!)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 50, height: 50)
+                        .clipShape(Circle())
+                } else {
+                    Image("DefaultAvatar")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 50, height: 50)
+                        .clipShape(Circle())
+                }
                 
                 Spacer()
                 Text("\(user.username)")
@@ -144,6 +153,7 @@ struct UserRowView: View {
                     .foregroundColor(Color("CarolinaBlue"))
                 
                 Spacer()
+                    .frame(width: 20)
 
             }
             .frame(width: 260)
