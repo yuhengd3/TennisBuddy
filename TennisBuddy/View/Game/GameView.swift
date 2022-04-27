@@ -53,7 +53,7 @@ struct GameView: View {
                         
                         
                         List {
-                            ForEach(listSelected == 0 ? gameViewModel.gameRepo.futureGames : gameViewModel.gameRepo.fetchGamesByUserId(uid: globalUserViewModel.currUser!.uid).reversed()) { game in
+                            ForEach(listSelected == 0 || currUserVM.currUser == nil ? gameViewModel.gameRepo.futureGames : gameViewModel.gameRepo.fetchGamesByUserId(uid: globalUserViewModel.currUser!.uid).reversed()) { game in
                                 NavigationLink {
                                     GameDetailView(game: game)
                                 } label: {

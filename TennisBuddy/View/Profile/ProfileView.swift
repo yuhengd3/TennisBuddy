@@ -197,27 +197,33 @@ struct ProfileView: View {
                                 }
                                 .foregroundColor(.black)
                                 
-                                HStack {
-                                    
-                                    Spacer()
-                                        .frame(width: 40)
-                                    ZStack {
-                                        Rectangle()
-                                            .frame(width: 48, height: 48)
-                                            .cornerRadius(10)
-                                            .foregroundColor(Color("ListBackground"))
-                                        Image(systemName: "arrow.right.circle.fill")
-                                            .font(.system(size: 24))
-                                            .padding(10)
+                                Button {
+                                    userViewModel.currUser = nil
+                                } label: {
+                                    HStack {
+                                        
+                                        Spacer()
+                                            .frame(width: 40)
+                                        ZStack {
+                                            Rectangle()
+                                                .frame(width: 48, height: 48)
+                                                .cornerRadius(10)
+                                                .foregroundColor(Color("ListBackground"))
+                                            Image(systemName: "arrow.right.circle.fill")
+                                                .font(.system(size: 24))
+                                                .padding(10)
+                                        }
+                                        
+                                        Spacer()
+                                            .frame(width: 20)
+                                        
+                                        Text("Log Out")
+                                            .fontWeight(.semibold)
+                                        Spacer()
                                     }
-                                    
-                                    Spacer()
-                                        .frame(width: 20)
-                                    
-                                    Text("Log Out")
-                                        .fontWeight(.semibold)
-                                    Spacer()
                                 }
+                                .foregroundColor(.black)
+                                
                                 
                                 
                                 

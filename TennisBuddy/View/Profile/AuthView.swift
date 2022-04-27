@@ -21,7 +21,7 @@ struct AuthView: View {
 
                 }, label: {
                     VStack {
-                        Text("Login")
+                        Text("Sign In")
                             .font(.system(size: 20))
                             .fontWeight(.bold)
                             .foregroundColor(index == 0 ? .black : .gray)
