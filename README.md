@@ -13,9 +13,9 @@ A mobile network for tennis players of various skill levels
 Check out local tennis games in your community and compete against others in seasonal leagues
 
 ## Core Functionalities
-User Authentication via Firebase
-Game Scheduling System
-Player ranking using the Elo rating algorithm
+User Authentication via Firebase <br/>
+Game Scheduling System <br/>
+Player ranking using the Elo rating algorithm <br/>
 User Profile
 
 ## Author
